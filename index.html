@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>SharkNinja × Pau Gasol</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -180,20 +181,23 @@ tr:hover td{background:var(--card)}
     <div id="gate-title">SharkNinja × Pau Gasol</div>
     <div id="gate-sub">Partnership Intelligence Brief · Access restricted</div>
     <input id="gate-input" type="password" placeholder="Enter access code" autocomplete="current-password">
-    <button id="gate-btn" onclick="checkGate()">Access document →</button>
+    <button id="gate-btn">Access document →</button>
     <div id="gate-err"></div>
   </div>
 </div>
 <script>
 (function(){
   const k='sn_pg_auth';
-  if(sessionStorage.getItem(k)==='1'){document.getElementById('gate').hidden=true}
-  document.getElementById('gate-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkGate()});
-  window.checkGate=function(){
-    const v=document.getElementById('gate-input').value;
-    if(v==='ninjaxpg2026'){sessionStorage.setItem(k,'1');document.getElementById('gate').hidden=true}
-    else{document.getElementById('gate-err').textContent='Incorrect access code.';document.getElementById('gate-input').value=''}
-  };
+  function hideGate(){var g=document.getElementById('gate');if(g){g.style.setProperty('display','none','important');g.remove()}}
+  function checkGate(){
+    var v=document.getElementById('gate-input').value;
+    if(v==='ninjaxpg2026'){try{sessionStorage.setItem(k,'1')}catch(e){}hideGate();}
+    else{document.getElementById('gate-err').textContent='Incorrect access code.';document.getElementById('gate-input').value='';}
+  }
+  window.checkGate=checkGate;
+  try{if(sessionStorage.getItem(k)==='1'){hideGate()}}catch(e){}
+  document.getElementById('gate-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkGate();});
+  document.getElementById('gate-btn').addEventListener('click',function(){checkGate();});
 })();
 </script>
 
@@ -1080,3 +1084,5 @@ window.addEventListener('scroll',()=>{
   });
 },{passive:true});
 </script>
+
+</body></html>
