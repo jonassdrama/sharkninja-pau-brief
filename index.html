@@ -1,0 +1,1082 @@
+<title>SharkNinja × Pau Gasol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08091a;--bg2:#0d1120;--card:rgba(255,255,255,.04);--card2:rgba(255,255,255,.07);
+  --gold:#c9a84c;--gold2:rgba(201,168,76,.15);--gold3:rgba(201,168,76,.08);
+  --text:#e8e6f0;--text2:rgba(232,230,240,.65);--text3:rgba(232,230,240,.4);
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.05);
+  --green:#22c55e;--amber:#f59e0b;--red:#ef4444;
+  --ninja:#f97316;--shark:#3b82f6;
+  --side:260px;--ff-title:'Playfair Display',Georgia,serif;--ff:'DM Sans',system-ui,sans-serif;
+}
+.t-es{display:none}
+html[data-lang="es"] .t-en{display:none}
+html[data-lang="es"] .t-es{display:inline}
+html[data-lang="es"] .t-es-block{display:block}
+html[data-lang="es"] .t-en-block{display:none}
+.lang-toggle{display:flex;gap:4px;margin-top:10px}
+.lang-btn{font-size:9px;font-weight:700;letter-spacing:.12em;padding:3px 8px;border-radius:2px;cursor:pointer;border:1px solid rgba(255,255,255,.12);background:none;color:rgba(232,230,240,.35);transition:all .13s}
+.lang-btn.active{background:var(--gold);border-color:var(--gold);color:#08091a}
+body{font-family:var(--ff);background:var(--bg);color:var(--text);font-size:14px;line-height:1.7}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:var(--side) 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--bg2);border-right:1px solid var(--border);padding:0}
+.sb-head{padding:22px 20px 14px;border-bottom:1px solid var(--border2)}
+.sb-logo{font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:rgba(201,168,76,.5)}
+.sb-title{font-family:var(--ff-title);font-size:13px;color:var(--text);margin-top:4px;line-height:1.3}
+.sb-sub{font-size:10px;color:var(--text3);margin-top:2px}
+.sb-nav{padding:10px 0 20px}
+.sb-item{display:flex;align-items:center;gap:8px;padding:6px 18px;cursor:pointer;border-left:2px solid transparent;transition:all .13s}
+.sb-item:hover{background:var(--card);border-left-color:rgba(201,168,76,.3)}
+.sb-item.active{background:var(--gold3);border-left-color:var(--gold)}
+.sb-num{font-size:9px;font-weight:600;color:var(--text3);width:18px;flex-shrink:0;font-variant-numeric:tabular-nums}
+.sb-item.active .sb-num{color:var(--gold)}
+.sb-label{font-size:10.5px;font-weight:500;color:var(--text2);line-height:1.3}
+.sb-item.active .sb-label,.sb-item:hover .sb-label{color:var(--text)}
+
+/* MAIN */
+.main{min-width:0;padding:0}
+.section{padding:48px 56px;border-bottom:1px solid var(--border2)}
+.section:last-child{border-bottom:none}
+.sec-eyebrow{font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.sec-title{font-family:var(--ff-title);font-size:26px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:6px}
+.sec-sub{font-size:13px;color:var(--text2);margin-bottom:28px;line-height:1.6;max-width:680px}
+.divider{height:1px;background:var(--border2);margin:28px 0}
+
+/* GRID HELPERS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:18px 20px}
+.card-gold{border-left:3px solid var(--gold)}
+.card-ninja{border-left:3px solid var(--ninja)}
+.card-shark{border-left:3px solid var(--shark)}
+.card-red{border-left:3px solid var(--red)}
+.card-green{border-left:3px solid var(--green)}
+.card-amber{border-left:3px solid var(--amber)}
+.card h4{font-family:var(--ff-title);font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}
+.card p{font-size:12.5px;color:var(--text2);line-height:1.6}
+.stat-n{font-family:var(--ff-title);font-size:32px;font-weight:900;color:var(--gold);line-height:1}
+.stat-l{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-top:4px}
+.stat-d{font-size:11.5px;color:var(--text2);margin-top:5px}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:rgba(255,255,255,.06);font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+td{padding:9px 12px;border-bottom:1px solid var(--border2);color:var(--text2);vertical-align:top;line-height:1.5}
+tr:hover td{background:var(--card)}
+
+/* BADGES */
+.badge{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:9px;white-space:nowrap}
+.badge-fact{background:rgba(34,197,94,.1);color:var(--green);border:.5px solid rgba(34,197,94,.25)}
+.badge-rep{background:rgba(249,115,22,.1);color:var(--ninja);border:.5px solid rgba(249,115,22,.25)}
+.badge-inf{background:rgba(201,168,76,.1);color:var(--gold);border:.5px solid rgba(201,168,76,.25)}
+.badge-risk-high{background:rgba(239,68,68,.15);color:var(--red);border:.5px solid rgba(239,68,68,.3)}
+.badge-risk-med{background:rgba(245,158,11,.12);color:var(--amber);border:.5px solid rgba(245,158,11,.25)}
+.badge-risk-low{background:rgba(34,197,94,.1);color:var(--green);border:.5px solid rgba(34,197,94,.2)}
+.badge-strong{background:rgba(34,197,94,.1);color:var(--green)}
+.badge-pot{background:rgba(201,168,76,.1);color:var(--gold)}
+.badge-weak{background:rgba(239,68,68,.1);color:var(--red)}
+.badge-ninja{background:rgba(249,115,22,.12);color:var(--ninja)}
+.badge-shark{background:rgba(59,130,246,.12);color:var(--shark)}
+
+/* TIMELINE */
+.timeline{border-left:2px solid var(--border);padding-left:20px;margin:16px 0}
+.tl-item{margin-bottom:18px;position:relative}
+.tl-item::before{content:'';position:absolute;left:-25px;top:5px;width:8px;height:8px;background:var(--gold);border-radius:50%}
+.tl-date{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.tl-text{font-size:12.5px;color:var(--text2);line-height:1.55;margin-top:2px}
+
+/* QUOTE */
+.pull-quote{border-left:3px solid var(--gold);padding:14px 18px;background:var(--gold3);margin:20px 0;border-radius:0 2px 2px 0}
+.pull-quote p{font-family:var(--ff-title);font-size:14.5px;font-style:italic;color:var(--text);line-height:1.6}
+.pull-quote cite{font-size:10.5px;color:var(--gold);margin-top:6px;display:block;font-style:normal}
+
+/* CLAUSE */
+.clause-block{background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.15);border-radius:2px;padding:20px 24px;font-family:Georgia,serif;font-size:12px;color:var(--text2);line-height:1.8}
+.clause-block h5{font-family:var(--ff);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin:16px 0 6px}
+.clause-block h5:first-child{margin-top:0}
+
+/* CONCEPT CARDS */
+.concept{background:var(--card2);border:1px solid var(--border);border-radius:2px;padding:20px;margin-bottom:14px}
+.concept-num{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
+.concept h4{font-family:var(--ff-title);font-size:16px;color:var(--text);margin:4px 0 8px}
+.concept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.concept-item label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:4px}
+.concept-item p{font-size:11.5px;color:var(--text2);line-height:1.55}
+
+/* RISK METER */
+.risk-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border2)}
+.risk-label{font-size:12px;color:var(--text2);flex:1}
+.risk-bar-wrap{width:120px;height:5px;background:rgba(255,255,255,.08);border-radius:3px;flex-shrink:0}
+.risk-bar{height:5px;border-radius:3px}
+
+/* Q LIST */
+.q-group{margin-bottom:24px}
+.q-group-title{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--border2);padding-bottom:6px;margin-bottom:10px}
+.q-item{padding:8px 0 8px 14px;border-bottom:1px solid var(--border2);font-size:12.5px;color:var(--text2);line-height:1.55;position:relative}
+.q-item::before{content:'Q';position:absolute;left:0;top:9px;font-size:8px;font-weight:700;color:var(--gold)}
+
+/* FLOW */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:16px 0}
+.flow-step{background:var(--card2);border:1px solid var(--border);padding:7px 14px;font-size:11.5px;color:var(--text2);border-radius:2px}
+.flow-arrow{color:var(--gold);font-size:14px}
+
+/* CAMPAIGN REF */
+.camp-ref{display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:2px;margin-bottom:8px}
+.camp-ref .cr-thumb{width:80px;height:50px;background:rgba(255,255,255,.06);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px}
+.camp-ref .cr-info{flex:1}
+.camp-ref .cr-title{font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:3px}
+.camp-ref .cr-meta{font-size:11px;color:var(--text3)}
+.camp-ref .cr-desc{font-size:11.5px;color:var(--text2);margin-top:4px;line-height:1.5}
+
+/* DEBRIEF */
+.debrief-section{margin-bottom:20px}
+.debrief-title{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.debrief-title::after{content:'';flex:1;height:1px;background:var(--border2)}
+.debrief-items{display:flex;flex-direction:column;gap:6px}
+.debrief-item{font-size:12.5px;color:var(--text2);padding:8px 12px;background:var(--card);border-left:2px solid var(--border);line-height:1.55}
+
+/* ARCH */
+.arch-layer{border:1px solid var(--border);border-radius:2px;padding:16px 20px;margin-bottom:10px}
+.arch-layer-num{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text3)}
+.arch-layer-title{font-family:var(--ff-title);font-size:15px;color:var(--gold);margin:3px 0 6px}
+.arch-layer-desc{font-size:12px;color:var(--text2);line-height:1.55}
+
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static;height:auto}
+  .sb-nav{display:flex;flex-wrap:wrap;padding:8px}
+  .sb-item{border-left:none;border-bottom:2px solid transparent;padding:5px 10px}
+  .sb-item.active{border-left:none;border-bottom-color:var(--gold);background:none}
+  .section{padding:32px 24px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .concept-grid{grid-template-columns:1fr}
+}
+#gate{position:fixed;inset:0;z-index:9999;background:#08091a;display:flex;align-items:center;justify-content:center}
+#gate-box{width:340px;max-width:90vw;padding:40px 32px;border:1px solid rgba(201,168,76,.25);background:#0d1120}
+#gate-logo{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(201,168,76,.5);margin-bottom:16px}
+#gate-title{font-family:'Playfair Display',Georgia,serif;font-size:20px;color:#e8e6f0;margin-bottom:6px}
+#gate-sub{font-size:12px;color:rgba(232,230,240,.45);margin-bottom:28px}
+#gate-input{width:100%;padding:10px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:2px;color:#e8e6f0;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;letter-spacing:.08em}
+#gate-input:focus{border-color:rgba(201,168,76,.5)}
+#gate-btn{margin-top:10px;width:100%;padding:10px;background:#c9a84c;border:none;border-radius:2px;color:#08091a;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer}
+#gate-btn:hover{background:#dab95c}
+#gate-err{margin-top:8px;font-size:11px;color:#ef4444;min-height:16px}
+</style>
+
+<div id="gate">
+  <div id="gate-box">
+    <div id="gate-logo">Confidential · Advisory</div>
+    <div id="gate-title">SharkNinja × Pau Gasol</div>
+    <div id="gate-sub">Partnership Intelligence Brief · Access restricted</div>
+    <input id="gate-input" type="password" placeholder="Enter access code" autocomplete="current-password">
+    <button id="gate-btn" onclick="checkGate()">Access document →</button>
+    <div id="gate-err"></div>
+  </div>
+</div>
+<script>
+(function(){
+  const k='sn_pg_auth';
+  if(sessionStorage.getItem(k)==='1'){document.getElementById('gate').hidden=true}
+  document.getElementById('gate-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkGate()});
+  window.checkGate=function(){
+    const v=document.getElementById('gate-input').value;
+    if(v==='ninjaxpg2026'){sessionStorage.setItem(k,'1');document.getElementById('gate').hidden=true}
+    else{document.getElementById('gate-err').textContent='Incorrect access code.';document.getElementById('gate-input').value=''}
+  };
+})();
+</script>
+
+<div class="layout">
+<nav class="sidebar">
+  <div class="sb-head">
+    <div class="sb-logo">Confidential · Advisory</div>
+    <div class="sb-title">SharkNinja × Pau Gasol</div>
+    <div class="sb-sub"><span class="t-en">Partnership Intelligence Brief</span><span class="t-es">Informe Estratégico de Partnership</span></div>
+    <div class="lang-toggle"><button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button><button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button></div>
+  </div>
+  <div class="sb-nav" id="sb-nav"></div>
+</nav>
+<main class="main" id="main">
+
+<!-- 01 EXECUTIVE SUMMARY -->
+<section class="section" id="s01">
+  <div class="sec-eyebrow"><span class="t-en">01 · Overview</span><span class="t-es">01 · Resumen</span></div>
+  <div class="sec-title"><span class="t-en">Executive Summary</span><span class="t-es">Resumen Ejecutivo</span></div>
+  <div class="sec-sub"><span class="t-en">SharkNinja proposes a 6-month Spain partnership with Pau Gasol at $250K. The deal has genuine strategic merit — but as structured it undervalues the asset, leaves key usage rights undefined, and misses the opportunity to build a distinctive platform. Below is our assessment.</span><span class="t-es">SharkNinja propone un partnership de 6 meses en España con Pau Gasol por $250K. La propuesta tiene mérito estratégico real — pero tal y como está estructurada infravalora el activo, deja derechos de uso sin definir y no aprovecha la oportunidad de construir una plataforma diferencial. Esta es nuestra valoración.</span></div>
+  <div class="grid-2">
+    <div class="card card-gold">
+      <h4><span class="t-en">What's compelling</span><span class="t-es">Lo que convence</span></h4>
+      <p><span class="t-en">Spain just went direct (Q1 2026) — SharkNinja has zero Spanish-language ambassador. Pau is a national icon with authentic food culture credentials, three young children, and institutional nutrition credibility (UNICEF Global Champion for Nutrition). The Beckham blueprint is clear and transferable.</span><span class="t-es">España acaba de pasar a ser mercado directo (Q1 2026) — SharkNinja no tiene ningún ambassador hispanohablante. Pau es un icono nacional con credenciales gastronómicas auténticas, tres hijos pequeños y credibilidad institucional en nutrición (UNICEF Global Champion for Nutrition). El modelo Beckham es claro y transferible.</span></p>
+    </div>
+    <div class="card card-amber">
+      <h4><span class="t-en">What needs work</span><span class="t-es">Lo que hay que resolver</span></h4>
+      <p><span class="t-en">Spain territory vs. EMEA usage rights is unresolved and materially affects Pau's exposure. "Full portfolio" inclusion risks the Ninja CREAMi — a reputational conflict with his UNICEF childhood obesity work. $250K for 6 months with EMEA usage is below benchmark for an ambassador of this stature.</span><span class="t-es">El conflicto entre el territorio España y los derechos de uso EMEA está sin resolver. La inclusión de todo el portfolio arriesga con el Ninja CREAMi — un conflicto reputacional directo con su mandato UNICEF contra la obesidad infantil. $250K por 6 meses con uso EMEA está por debajo del benchmark para un ambassador de esta categoría.</span></p>
+    </div>
+    <div class="card card-green">
+      <h4><span class="t-en">The bigger opportunity</span><span class="t-es">La oportunidad más grande</span></h4>
+      <p><span class="t-en">The pre-deal conversation already established the right territory: healthy eating, family, nutrition, food. Adding a Gasol Foundation layer (Joan Roca, UNICEF, childhood nutrition programmes) transforms this from a commercial endorsement into a movement — something no other SharkNinja ambassador currently offers.</span><span class="t-es">La conversación previa ya estableció el territorio correcto: alimentación saludable, familia, nutrición, gastronomía. Añadir una capa Gasol Foundation (Joan Roca, UNICEF, programas de nutrición infantil) transforma esto de un endorsement comercial en un movimiento — algo que ningún otro ambassador de SharkNinja ofrece actualmente.</span></p>
+    </div>
+    <div class="card card-red">
+      <h4><span class="t-en">Priority risk</span><span class="t-es">Riesgo prioritario</span></h4>
+      <p><span class="t-en">The Ninja CREAMi is SharkNinja's most marketed product and will likely be pushed. For the UNICEF Champion for Zero Childhood Obesity, promoting an ice cream maker without explicit creative guardrails creates an easily exploitable contradiction. Must be addressed contractually before signing.</span><span class="t-es">El Ninja CREAMi es el producto más activado de SharkNinja y probablemente querrán incluirlo. Para el UNICEF Champion contra la Obesidad Infantil Cero, promover una heladera sin restricciones creativas explícitas crea una contradicción fácilmente explotable. Debe resolverse contractualmente antes de firmar.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 SHARKNINJA AT A GLANCE -->
+<section class="section" id="s02">
+  <div class="sec-eyebrow"><span class="t-en">02 · Company</span><span class="t-es">02 · Empresa</span></div>
+  <div class="sec-title">SharkNinja at a Glance</div>
+  <div class="sec-sub"><span class="t-en">NYSE: SN · Needham, MA · 4,100+ employees · 26+ markets. Fastest-growing large-cap consumer appliance company globally.</span><span class="t-es">NYSE: SN · Needham, MA · +4.100 empleados · +26 mercados. La compañía de electrodomésticos de gran capitalización con mayor crecimiento del mundo.</span></div>
+  <div class="grid-4" style="margin-bottom:24px">
+    <div class="card"><div class="stat-n">$6.4B</div><div class="stat-l">Revenue FY2025</div><div class="stat-d">+15.7% YoY · 13th consecutive quarter double-digit growth</div></div>
+    <div class="card"><div class="stat-n">$25.8B</div><div class="stat-l">Market Cap</div><div class="stat-d">Sep 2026 · up ~340% since NYSE IPO Jul 2023</div></div>
+    <div class="card"><div class="stat-n">$700M</div><div class="stat-l">Annual Ad Spend</div><div class="stat-d">~11% of revenue · 70% digital · 40% social</div></div>
+    <div class="card"><div class="stat-n">+36.6%</div><div class="stat-l">International Growth Q2 2026</div><div class="stat-d">Spain & Italy converted direct Q1 2026</div></div>
+  </div>
+  <div class="divider"></div>
+  <p style="font-size:12.5px;color:var(--text2);max-width:680px;margin-bottom:16px"><strong style="color:var(--text)">Spain market status:</strong> SharkNinja converted Spain from distributor-led to direct operations in Q1 2026. They have active DTC sites (sharkninja.es, ninjakitchen.es), Spanish-language social channels, and are actively hiring Madrid-based marketing leadership. They ran Beckham's "Ninja the Holidays" campaign in Spain from November 4, 2024. As of September 2026 they have <strong style="color:var(--gold)">no Spanish-language ambassador</strong>.</p>
+  <div class="grid-3">
+    <div class="card"><div class="stat-n" style="font-size:20px">Ninja</div><div class="stat-l">Kitchen appliances</div><div class="stat-d">Air fryers, outdoor cooking, coffee, blenders, ice cream, hydration. £6.5B+ category.</div></div>
+    <div class="card"><div class="stat-n" style="font-size:20px">Shark</div><div class="stat-l">Home + Beauty</div><div class="stat-d">Vacuums, robot vacuums, hair tools, CryoGlow LED skincare. Beauty +45% FY2025.</div></div>
+    <div class="card"><div class="stat-n" style="font-size:20px">The Neighborhood</div><div class="stat-l">Ambassador ecosystem</div><div class="stat-d">Beckham, Hart, Brady, Klum. Each owns a lane. Spain/LATAM/health lane: unoccupied.</div></div>
+  </div>
+</section>
+
+<!-- 03 PRODUCT ECOSYSTEM -->
+<section class="section" id="s03">
+  <div class="sec-eyebrow"><span class="t-en">03 · Products</span><span class="t-es">03 · Productos</span></div>
+  <div class="sec-title"><span class="t-en">Product Ecosystem & Pau Gasol Fit Matrix</span><span class="t-es">Ecosistema de Producto y Matriz de Encaje</span></div>
+  <div class="sec-sub"><span class="t-en">Key Ninja and Shark categories with organic fit assessment for Pau personally, Gasol Foundation, family, performance, gastronomy, and reputational risk.</span><span class="t-es">Categorías principales de Ninja y Shark con valoración de encaje orgánico para Pau personalmente, Gasol Foundation, familia, performance, gastronomía y riesgo reputacional.</span></div>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Category</th><th>Key Products</th><th>Spain Price</th><th>Pau Fit</th><th>Foundation Fit</th><th>Family</th><th>Performance</th><th>Gastronomy</th><th>Rep Risk</th></tr>
+    <tr>
+      <td><strong>Outdoor Cooking</strong><br><span style="font-size:10px;color:var(--text3)">Woodfire · FlexFlame</span></td>
+      <td style="font-size:11px">Woodfire Pro Connect XL<br>FlexFlame 5-in-1 Propane</td>
+      <td>€430–999</td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-risk-low">Low</span></td>
+    </tr>
+    <tr>
+      <td><strong>Air Fryers</strong><br><span style="font-size:10px;color:var(--text3)">Foodi · CRISPi · DoubleStack</span></td>
+      <td style="font-size:11px">DoubleStack XL 9.5L<br>CRISPi PRO Glass</td>
+      <td>€130–270</td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-risk-low">Low</span></td>
+    </tr>
+    <tr>
+      <td><strong>Blenders / Food Prep</strong><br><span style="font-size:10px;color:var(--text3)">Detect · BlendBOSS</span></td>
+      <td style="font-size:11px">Ninja Detect Power Pro<br>Detect Kitchen System</td>
+      <td>€110–250</td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-risk-low">Low</span></td>
+    </tr>
+    <tr>
+      <td><strong>Multi-cookers</strong><br><span style="font-size:10px;color:var(--text3)">Foodi · Combi · Speedi</span></td>
+      <td style="font-size:11px">Ninja Combi 12-in-1<br>Foodi SmartLid 15-in-1</td>
+      <td>€230–380</td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-risk-low">Low</span></td>
+    </tr>
+    <tr>
+      <td><strong>Hydration</strong><br><span style="font-size:10px;color:var(--text3)">Ninja Thirsti</span></td>
+      <td style="font-size:11px">Thirsti Max<br>Thirsti Ultimate</td>
+      <td>€180 (US)</td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-risk-low">Lowest in portfolio</span></td>
+    </tr>
+    <tr>
+      <td><strong>Coffee</strong><br><span style="font-size:10px;color:var(--text3)">Ninja Luxe Café</span></td>
+      <td style="font-size:11px">Luxe Café Pro (€550)<br>Luxe Café Premier</td>
+      <td>€450–700</td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-risk-med">⚠ Café de Finca conflict — see §17</span></td>
+    </tr>
+    <tr style="background:rgba(239,68,68,.04)">
+      <td><strong>CREAMi / Ice Cream</strong><br><span style="font-size:10px;color:var(--red)">⚠ High-risk category</span></td>
+      <td style="font-size:11px">CREAMi Deluxe<br>Scoop & Swirl · SLUSHi</td>
+      <td>€250–350</td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-risk-high">HIGH CONFLICT</span></td>
+      <td><span class="badge badge-strong">Strong</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-risk-high">High — UNICEF obesity mandate</span></td>
+    </tr>
+    <tr>
+      <td><strong>Shark Vacuums</strong></td>
+      <td style="font-size:11px">PowerDetect Clean & Empty</td>
+      <td>€400–450</td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-risk-low">Low but poor fit</span></td>
+    </tr>
+    <tr>
+      <td><strong>Shark Beauty</strong></td>
+      <td style="font-size:11px">FlexStyle · CryoGlow · SpeedStyle</td>
+      <td>€250–350</td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-pot">Potential</span></td>
+      <td><span class="badge badge-weak">Weak</span></td>
+      <td><span class="badge badge-risk-low">Low but irrelevant</span></td>
+    </tr>
+  </table>
+  </div>
+  <div style="margin-top:12px;padding:12px 14px;background:var(--gold3);border-left:3px solid var(--gold);font-size:11.5px;color:var(--text2);line-height:1.6">
+    <strong style="color:var(--gold)">Recommended product focus:</strong> Outdoor Cooking (hero visual) + Blenders/Food Prep (health/performance anchor) + Air Fryers (family volume reach) + Thirsti (cleanest Foundation alignment). Exclude CREAMi or add explicit creative restrictions. Coffee requires Café de Finca conflict resolution first.
+  </div>
+</section>
+
+<!-- 04 AMBASSADOR STRATEGY -->
+<section class="section" id="s04">
+  <div class="sec-eyebrow"><span class="t-en">04 · Strategy</span><span class="t-es">04 · Estrategia</span></div>
+  <div class="sec-title"><span class="t-en">How SharkNinja Builds Ambassador Partnerships</span><span class="t-es">Cómo SharkNinja construye sus partnerships de ambassador</span></div>
+  <div class="sec-sub"><span class="t-en">Three non-negotiable principles govern every SharkNinja ambassador relationship. Understanding them is essential to framing the Gasol pitch correctly.</span><span class="t-es">Tres principios no negociables rigen cada relación de ambassador de SharkNinja. Entenderlos es esencial para posicionar correctamente la propuesta Gasol.</span></div>
+  <div class="grid-3" style="margin-bottom:24px">
+    <div class="card card-gold">
+      <h4>1. Authenticity first</h4>
+      <p>CEO Mark Barrocas discovered Beckham through a Netflix documentary about his personal life — Beckham already owned Ninja products. Courteney Cox was selected because she is "known as a real-life clean freak." The selection logic is always: genuine pre-existing alignment, then scale.</p>
+    </div>
+    <div class="card card-gold">
+      <h4>2. Social-first architecture</h4>
+      <p>70% of the $700M ad budget is digital. 40% of digital = social. Products are seeded with influencers before launch (Ninja Swirl: 70M impressions, 90K waitlist before launch). Celebrity amplification follows organic proof. The Neighbors series (Hartbeat) turns ambassador content into owned editorial media.</p>
+    </div>
+    <div class="card card-gold">
+      <h4>3. Ambassador ecosystem</h4>
+      <p>"The SharkNinja Neighborhood" is a brand architecture of distinct personas. Each ambassador owns a lane: Beckham (global cooking), Brady (outdoor/performance USA), Hart (comedy/mass), Klum (EMEA beauty). Lane assignment is deliberate — ambassadors complement, not compete.</p>
+    </div>
+  </div>
+  <div class="pull-quote">
+    <p>"The most authentic content is what's coming from actual users that have bought the product. My wife and I watched the David Beckham documentary and saw he loves cooking and being in the kitchen — and when we reached out, he already had a few Ninja products."</p>
+    <cite>— Mark Barrocas, CEO SharkNinja (Modern Retail, 2025) · <span class="badge badge-rep">PUBLICLY REPORTED</span></cite>
+  </div>
+</section>
+
+<!-- 05 AMBASSADOR BENCHMARK MATRIX -->
+<section class="section" id="s05">
+  <div class="sec-eyebrow"><span class="t-en">05 · Benchmarks</span><span class="t-es">05 · Benchmarks</span></div>
+  <div class="sec-title"><span class="t-en">Ambassador Benchmark Matrix</span><span class="t-es">Matriz de Benchmarks de Ambassador</span></div>
+  <div class="sec-sub"><span class="t-en">Full SharkNinja ambassador roster as of September 2026, with Pau Gasol parallel assessment for each.</span><span class="t-es">Cartera completa de ambassadors de SharkNinja a septiembre 2026, con valoración del paralelo con Pau Gasol para cada uno.</span></div>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Ambassador</th><th>Brand</th><th>Category</th><th>Geography</th><th>Type</th><th>Pau Parallel?</th></tr>
+    <tr>
+      <td><strong>David Beckham</strong><br><span style="font-size:10px;color:var(--text3)">Footballer, global icon</span></td>
+      <td><span class="badge badge-ninja">Ninja</span></td>
+      <td style="font-size:11px">Cooking, outdoor, coffee, co-designed product</td>
+      <td>Global · US+UK primary</td>
+      <td>Multi-year global ambassador + product collab <span class="badge badge-fact">FACT</span></td>
+      <td style="color:var(--gold);font-size:11.5px"><strong>Highest precedent.</strong> Food passion, global sport icon, dual US/EU markets, Spain connection (Real Madrid era). Pau replicates this but adds: Spanish native identity, health/nutrition advocacy, LATAM dimension.</td>
+    </tr>
+    <tr>
+      <td><strong>Tom Brady</strong><br><span style="font-size:10px;color:var(--text3)">NFL legend, entrepreneur</span></td>
+      <td><span class="badge badge-ninja">Ninja</span></td>
+      <td style="font-size:11px">Outdoor cooking, air fryers + Innovation Challenge</td>
+      <td>US primary</td>
+      <td>Multi-year + Innovation Challenge (MassChallenge) <span class="badge badge-fact">FACT</span></td>
+      <td style="font-size:11.5px;color:var(--text2)"><strong>Key precedent: commercial + social impact layer.</strong> Brady's Innovation Challenge ($25K prize, MassChallenge) proves SharkNinja will invest in purpose-driven ambassador activations beyond pure product promotion.</td>
+    </tr>
+    <tr>
+      <td><strong>Kevin Hart</strong><br><span style="font-size:10px;color:var(--text3)">Comedian, entrepreneur</span></td>
+      <td><span class="badge badge-ninja">Ninja</span> <span class="badge badge-shark">Shark</span></td>
+      <td style="font-size:11px">Full portfolio (Neighbors series)</td>
+      <td>US primary, global digital</td>
+      <td>Multi-year · Hartbeat production partner <span class="badge badge-fact">FACT</span></td>
+      <td style="font-size:11.5px;color:var(--text2)">Low direct parallel. Hartbeat franchise model (Neighbors) is the format template — could inform a Gasol content platform.</td>
+    </tr>
+    <tr>
+      <td><strong>Heidi Klum</strong><br><span style="font-size:10px;color:var(--text3)">Model, TV producer</span></td>
+      <td><span class="badge badge-shark">Shark Beauty</span></td>
+      <td style="font-size:11px">CryoGlow skincare · Beauty portfolio</td>
+      <td>EMEA (Germany focus) + US</td>
+      <td>Multi-year · Germany-first EMEA strategy <span class="badge badge-fact">FACT</span></td>
+      <td style="font-size:11.5px;color:var(--text2)">Key structural precedent: ambassador deployed specifically to activate an EMEA market (Germany). Proves SharkNinja will invest in market-specific ambassador strategy — the model for a Gasol Spain deployment.</td>
+    </tr>
+    <tr>
+      <td><strong>Thierry Henry · Peter Crouch · Bastian Schweinsteiger</strong></td>
+      <td><span class="badge badge-ninja">Ninja</span> <span class="badge badge-shark">Shark</span></td>
+      <td style="font-size:11px">Full home portfolio (Euro 2024 campaign)</td>
+      <td>EMEA · market-specific</td>
+      <td>Campaign-specific Summer 2024 <span class="badge badge-fact">FACT</span></td>
+      <td style="font-size:11.5px;color:var(--text2)">Proves SharkNinja activates European football legends for EMEA campaigns. But these were campaign-only. Pau's stature warrants the multi-year structural approach.</td>
+    </tr>
+    <tr>
+      <td><strong>Courteney Cox</strong></td>
+      <td><span class="badge badge-shark">Shark</span></td>
+      <td style="font-size:11px">Vacuums (PowerDetect)</td>
+      <td>US primary</td>
+      <td>Campaign-specific 2024 <span class="badge badge-fact">FACT</span></td>
+      <td style="font-size:11.5px;color:var(--text2)">Model: real-life personality trait (clean freak) = product category. Pau's equivalent = foodie + health advocate = Ninja cooking products.</td>
+    </tr>
+    <tr>
+      <td><strong>Claudia Sulewski</strong></td>
+      <td><span class="badge badge-shark">Shark Beauty</span></td>
+      <td style="font-size:11px">Celestial Skies Collection (Sephora)</td>
+      <td>US · Sephora exclusive</td>
+      <td>Limited-edition product collab Sep 2026 <span class="badge badge-fact">FACT</span></td>
+      <td style="font-size:11.5px;color:var(--text2)">Model: creator → co-designed limited edition → premium retail (Sephora). Replicable for Pau as endgame: Pau-designed Ninja product in Mediterranean/health aesthetic.</td>
+    </tr>
+  </table>
+  </div>
+  <div style="margin-top:14px;padding:12px 14px;background:rgba(59,130,246,.06);border-left:3px solid var(--shark);font-size:11.5px;color:var(--text2)">
+    <strong style="color:var(--text)">The gap:</strong> No ambassador in the SharkNinja Neighborhood covers Spain, Latin America, basketball/NBA culture, or health/nutrition advocacy. Pau Gasol is the only public figure who occupies all four simultaneously. This is not a gap they filled with campaign-level talent (Henry, Schweinsteiger) — it requires a structural multi-year position.
+  </div>
+</section>
+
+<!-- 06 CREATIVE GALLERY -->
+<section class="section" id="s06">
+  <div class="sec-eyebrow"><span class="t-en">06 · Evidence</span><span class="t-es">06 · Evidencia Creativa</span></div>
+  <div class="sec-title"><span class="t-en">Creative Evidence Library</span><span class="t-es">Biblioteca de Evidencia Creativa</span></div>
+  <div class="sec-sub"><span class="t-en">Documented SharkNinja campaigns with sources. All links are publicly available from official channels or confirmed press coverage.</span><span class="t-es">Campañas de SharkNinja documentadas con fuentes. Todos los enlaces están disponibles públicamente en canales oficiales o cobertura de prensa confirmada.</span></div>
+
+  <div style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 10px">David Beckham × Ninja — Video</div>
+  <div class="camp-ref"><div class="cr-thumb">🎬</div><div class="cr-info"><div class="cr-title">"Ninja the Holidays" — First Global Omnichannel Campaign</div><div class="cr-meta">Nov 2024 · Ninja Cooking · US + 12 EMEA markets (incl. Spain) · TV + OOH + Digital</div><div class="cr-desc">Beckham showcases DoubleStack XL, Woodfire Oven, CREAMi. Launched US Nov 1, Spain/UK/France/Germany Nov 4. OOH at Times Square NYC, Piccadilly London, Downtown LA, Miami.</div><a href="https://www.businesswire.com/news/home/20241101571515/en/SharkNinja-and-David-Beckham-Help-Consumers-Ninja-the-Holidays-in-First-Ever-Global-Omnichannel-Campaign-for-the-Ninja-Brand" style="font-size:10.5px">→ BusinessWire press release</a></div></div>
+
+  <div class="camp-ref"><div class="cr-thumb">🎬</div><div class="cr-info"><div class="cr-title">FlexFlame "Not Just a Grill" — TV spot</div><div class="cr-meta">Mar 2025 · Ninja FlexFlame Outdoor · iSpot: TKuA</div><div class="cr-desc">Beckham presents the FlexFlame 5-in-1 Outdoor Cooking System ($999). Emphasis on propane + woodfire technology. Tom Brady later deployed the same product range in "Tom Upgrady."</div><a href="https://www.ispot.tv/ad/TKuA/ninja-cooking-flex-flame-not-just-a-grill-featuring-david-beckham" style="font-size:10.5px">→ ispot.tv</a> · <a href="https://www.youtube.com/watch?v=lDePSagKnWs" style="font-size:10.5px">YouTube</a></div></div>
+
+  <div class="camp-ref"><div class="cr-thumb">🎬</div><div class="cr-info"><div class="cr-title">The Neighbors — "Go Bigger" (with Kevin Hart)</div><div class="cr-meta">Oct 2025 · Ninja SLUSHi Max · iSpot: BEv7</div><div class="cr-desc">Beckham and Hart as neighbors competing over the Ninja SLUSHi Max. Launch of the "SharkNinja Neighborhood" multi-ambassador franchise. Produced through Hartbeat.</div><a href="https://www.ispot.tv/ad/BEv7/ninja-slushi-max-go-bigger-featuring-david-beckham-kevin-hart" style="font-size:10.5px">→ ispot.tv</a> · <a href="https://www.youtube.com/watch?v=sto0cJJfSEE" style="font-size:10.5px">YouTube</a></div></div>
+
+  <div class="camp-ref"><div class="cr-thumb">🎬</div><div class="cr-info"><div class="cr-title">Ninja Luxe Café Color Collection · "by David Beckham" co-design</div><div class="cr-meta">Apr 2026 · Ninja Luxe Café Pro · $749.99 / £849.99 · Currys, Amazon, ninjakitchen.com</div><div class="cr-desc">First co-designed product collaboration. Matte black stainless steel, black chestnut wood grain, gold accents. Six months of genuine creative development. Product SKU name: "ES771UKBK by David Beckham." Confirms retail asset usage — the Beckham name is embedded in the product itself, not just marketing.</div><a href="https://newsroom.sharkninja.com/ninja-launches-limited-edition-luxe-cafe-color-collection-including-first-ever-david-beckham-collaboration/" style="font-size:10.5px">→ SharkNinja newsroom</a></div></div>
+
+  <div style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:20px 0 10px">Tom Brady × Ninja — Video</div>
+  <div class="camp-ref"><div class="cr-thumb">🎬</div><div class="cr-info"><div class="cr-title">"Tom Upgrady" — Backyard Surprise Campaign</div><div class="cr-meta">Apr 2026 · Ninja Outdoor Portfolio · iSpot: gsIk</div><div class="cr-desc">Brady surprises Boston-area homeowners upgrading their backyards with full Ninja outdoor lineup. #TomUpgrady UGC mechanic. Demonstrates SharkNinja's event-as-content-factory model.</div><a href="https://ir.sharkninja.com/news/news-details/2026/Ninja-and-Tom-Brady-Debut-Tom-Upgrady-Campaign-Featuring-Surprise-Backyard-Upgrades/default.aspx" style="font-size:10.5px">→ SharkNinja IR</a> · <a href="https://www.ispot.tv/ad/gsIk/sharkninja-tom-upgrady-featuring-tom-brady" style="font-size:10.5px">ispot.tv</a></div></div>
+
+  <div class="camp-ref"><div class="cr-thumb">🏆</div><div class="cr-info"><div class="cr-title">SharkNinja Innovation Challenge — MassChallenge Partnership</div><div class="cr-meta">Nov 2025 – Mar 2026 · Tom Brady + SharkNinja · Boston</div><div class="cr-desc">Social impact layer of Brady deal. Open innovation challenge for entrepreneurs. $25,000 prize. Finalists pitched live in Boston March 2026. Winner: "Woven" (beauty tech for textured hair). <strong style="color:var(--gold)">This is the precedent for a Gasol Foundation x SharkNinja impact programme.</strong></div><a href="https://masschallenge.org/sharkninja-innovation-challenge/" style="font-size:10.5px">→ MassChallenge</a> · <a href="https://ir.sharkninja.com/news/news-details/2026/SharkNinja-Innovation-Challenge-Celebrates-Winners-at-Inaugural-Live-Pitch-Finale/default.aspx" style="font-size:10.5px">→ SharkNinja IR</a></div></div>
+
+  <div style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:20px 0 10px">Shark Beauty — Event + Retail</div>
+  <div class="camp-ref"><div class="cr-thumb">💇</div><div class="cr-info"><div class="cr-title">Girls Aloud Show 2024 — Official Hair Sponsor · Limited Edition Colorways</div><div class="cr-meta">May–Jun 2024 · Shark Beauty UK · 30 shows · Malibu Pink + Lilac Frost FlexStyle</div><div class="cr-desc">Tour partnership generating 60+ nights of backstage content + limited-edition collectible product colorways. Demonstrates: SharkNinja turns live events into product launch moments and sustained social content.</div><a href="https://newsroom.sharkninja.com/shark-beauty-announces-partnership-with-girls-aloud-as-the-official-hair-sponsor-of-the-girls-aloud-show-2024-tour/" style="font-size:10.5px">→ SharkNinja newsroom</a></div></div>
+  <div class="camp-ref"><div class="cr-thumb">🛍️</div><div class="cr-info"><div class="cr-title">Claudia Sulewski "Celestial Skies Collection" — Sephora Exclusive</div><div class="cr-meta">Sep 2026 · Shark Beauty · Sephora.com + in-store from Oct 1, 2026</div><div class="cr-desc">Creator/entrepreneur co-designs limited-edition Shark Beauty edit exclusively for Sephora. Midnight blue + gold colorway. Demonstrates SharkNinja's ability to move into premium beauty retail with creator-led limited editions.</div><a href="https://ir.sharkninja.com/news/news-details/2026/Shark-Beauty-Launches-Limited-Edition-Celestial-Skies-Collection-in-Partnership-with-Actress-and-CYKLAR-Founder-Claudia-Sulewski-Available-Exclusively-at-Sephora/default.aspx" style="font-size:10.5px">→ SharkNinja IR</a></div></div>
+</section>
+
+<!-- PLACEHOLDER SECTIONS 07-22 -->
+<!-- 07 BECKHAM DEEP DIVE -->
+<section class="section" id="s07">
+  <div class="sec-eyebrow"><span class="t-en">07 · Case Study</span><span class="t-es">07 · Caso de Estudio</span></div>
+  <div class="sec-title">David Beckham × Ninja — Deep Dive</div>
+  <div class="sec-sub"><span class="t-en">The closest precedent for a Pau Gasol × Ninja partnership. Anatomy of the deal from announcement to co-designed product.</span><span class="t-es">El precedente más cercano al partnership Pau Gasol × Ninja. Anatomía del deal desde el anuncio hasta el producto co-diseñado.</span></div>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-date">May 2024</div><div class="tl-text"><strong>Official announcement.</strong> Global Brand Ambassador for Ninja brand. Multi-year. CEO: "He already had a few Ninja products." <span class="badge badge-fact">FACT</span></div></div>
+    <div class="tl-item"><div class="tl-date">Nov 2024</div><div class="tl-text"><strong>"Ninja the Holidays"</strong> — first-ever global omnichannel Ninja campaign. US launch Nov 1; Spain, UK, France, Germany, Italy, Nordics, MENA, Benelux Nov 4. OOH: Times Square, Piccadilly, Downtown LA, Miami. Products: DoubleStack XL Air Fryer, Woodfire Oven, CREAMi. <span class="badge badge-fact">FACT</span></div></div>
+    <div class="tl-item"><div class="tl-date">Mar 2025</div><div class="tl-text"><strong>FlexFlame "Not Just a Grill"</strong> TV spot. Beckham presents the $999 5-in-1 outdoor cooking system. iSpot: TKuA. <span class="badge badge-rep">PUBLICLY REPORTED</span></div></div>
+    <div class="tl-item"><div class="tl-date">Apr 2025</div><div class="tl-text"><strong>Inter Miami CF tailgate.</strong> First in-person activation. Beckham hosts fans cooking with FlexFlame at Chase Stadium, Miami. Press release, professional photography, retailer tags (NinjaKitchen.com, Home Depot, ACE Hardware). <span class="badge badge-fact">FACT</span></div></div>
+    <div class="tl-item"><div class="tl-date">Oct 2025</div><div class="tl-text"><strong>"The Neighbors" launches</strong> with Kevin Hart. Beckham + Hart as neighbors — Ninja SLUSHi Max "Go Bigger" TV spot. Hartbeat production. Multi-episode digital series format. <span class="badge badge-fact">FACT</span></div></div>
+    <div class="tl-item"><div class="tl-date">Apr 2026</div><div class="tl-text"><strong>Ninja Luxe Café Pro by David Beckham.</strong> First co-designed product collab. Matte black stainless, black chestnut wood, gold accents. £849.99 / $749.99. Six months of genuine creative development. SKU embedded: "ES771UKBK by David Beckham." Available: Currys, Amazon, NinjaKitchen.com. <span class="badge badge-fact">FACT</span></div></div>
+  </div>
+  <div class="divider"></div>
+  <p style="font-size:11.5px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.15em;margin-bottom:10px">Strategic Takeaway for Pau</p>
+  <div class="grid-2">
+    <div class="card"><h4>1. Authenticity is the foundation</h4><p>Beckham was found through a personal documentary, not a talent roster. Pau's foodie profile (NBC LA: "most refined palate in the NBA"), his nutrition advocacy, and his Catalan food heritage provide the same authentic origin story — before any deal is proposed.</p></div>
+    <div class="card"><h4>2. Sport is a cultural passport</h4><p>Beckham's Inter Miami connection made a UK deal into a US-Latino-global football story. Pau holds equivalent dual citizenship: NBA legend in LA + national hero in Spain. Extends to Latin America where SharkNinja has zero ambassador coverage.</p></div>
+    <div class="card"><h4>3. One hero launch → product depth</h4><p>Beckham started with one holiday campaign and expanded over 18 months to a co-designed coffee machine SKU. Pau deal could follow: anchor on outdoor/cooking hero moment → limited-edition Mediterranean-aesthetic product collab as the endgame.</p></div>
+    <div class="card"><h4>4. Beckham is coffee. Pau is nutrition.</h4><p>The Luxe Café Pro "by David Beckham" positions Beckham as the premium coffee identity. This is already taken. Pau's distinctive lane is healthy cooking, family nutrition, and performance food — categories Beckham does not and cannot credibly occupy.</p></div>
+  </div>
+</section>
+
+<!-- 08 BRADY DEEP DIVE -->
+<section class="section" id="s08">
+  <div class="sec-eyebrow"><span class="t-en">08 · Case Study</span><span class="t-es">08 · Caso de Estudio</span></div>
+  <div class="sec-title"><span class="t-en">Tom Brady × Ninja — The Impact Layer Precedent</span><span class="t-es">Tom Brady × Ninja — El Precedente de la Capa de Impacto</span></div>
+  <div class="sec-sub"><span class="t-en">Brady's partnership is the most important structural precedent for building a Gasol Foundation component into the deal.</span><span class="t-es">El partnership de Brady es el precedente estructural más importante para incorporar un componente Gasol Foundation en el deal.</span></div>
+  <div class="grid-2" style="margin-bottom:24px">
+    <div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">Oct 2025</div><div class="tl-text"><strong>"Tom Brady Gets Roasted Again"</strong> — launch campaign tied to Brady's Netflix roast cultural moment. Multi-year deal. Ninja CRISPi PRO air fryer as lead product. <span class="badge badge-fact">FACT</span></div></div>
+        <div class="tl-item"><div class="tl-date">Nov 2025</div><div class="tl-text"><strong>SharkNinja Innovation Challenge</strong> — Brady + SharkNinja + MassChallenge. Open competition for entrepreneurs building products solving real problems. <span class="badge badge-fact">FACT</span></div></div>
+        <div class="tl-item"><div class="tl-date">Mar 2026</div><div class="tl-text"><strong>Live pitch finale, Boston.</strong> $25,000 grand prize. Winner: "Woven" (beauty tech for textured hair). <span class="badge badge-fact">FACT</span></div></div>
+        <div class="tl-item"><div class="tl-date">Apr 2026</div><div class="tl-text"><strong>"Tom Upgrady"</strong> — Brady surprises Boston families with backyard upgrades. Full outdoor lineup: FlexFlame, Fireside360, FrostVault, Woodfire Pro Connect, Artisan Pizza Oven. #TomUpgrady UGC campaign. <span class="badge badge-fact">FACT</span></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="card card-gold" style="margin-bottom:14px">
+        <h4>Why this matters for Pau</h4>
+        <p>The Innovation Challenge proves SharkNinja is willing to invest in purpose-driven programme components within an ambassador deal — not just TV spots. Brady's Challenge is commercial innovation. The Gasol Foundation equivalent is childhood nutrition impact. The structural template is identical.</p>
+      </div>
+      <div class="card card-green">
+        <h4>The Gasol Foundation parallel</h4>
+        <p><strong>Brady deal:</strong> Innovation Challenge + MassChallenge + $25K prize + Boston event<br><strong>Gasol deal equivalent:</strong> Ninja × Gasol Foundation Healthy Kitchen Challenge + Spain/US community programme + kitchen equipment for schools/camps + annual results event with Foundation data</p>
+      </div>
+    </div>
+  </div>
+  <div class="pull-quote">
+    <p>A commercial ambassador deal with a social impact layer is not unprecedented at SharkNinja. Brady set the template in 2025. The question for a Gasol deal is not whether SharkNinja will consider it — it's whether we propose it as a second structured component with its own budget line, or leave it as an informal goodwill gesture.</p>
+    <cite>— Advisory inference · <span class="badge badge-inf">INFERENCE</span></cite>
+  </div>
+</section>
+
+<!-- 09 ASSET USAGE -->
+<section class="section" id="s09">
+  <div class="sec-eyebrow"><span class="t-en">09 · Usage Intelligence</span><span class="t-es">09 · Inteligencia de Uso</span></div>
+  <div class="sec-title"><span class="t-en">What SharkNinja Actually Does With Ambassador Content</span><span class="t-es">Qué hace realmente SharkNinja con el contenido de sus ambassadors</span></div>
+  <div class="sec-sub"><span class="t-en">Evidence-based analysis of how ambassador assets are deployed across channels, retail and media.</span><span class="t-es">Análisis basado en evidencia de cómo SharkNinja despliega los activos de sus ambassadors en canales, retail y medios.</span></div>
+  <div class="grid-2">
+    <div>
+      <p style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:10px">Documented usage patterns</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>Usage Type</th><th>Evidence</th><th>Label</th></tr>
+        <tr><td>TV + streaming</td><td>Thursday Night Football (Amazon), streaming platforms, TV spots in 12+ markets simultaneously</td><td><span class="badge badge-fact">FACT</span></td></tr>
+        <tr><td>OOH / DOOH</td><td>Times Square, Piccadilly Lights, Downtown LA, Miami — documented in "Ninja the Holidays" press release</td><td><span class="badge badge-fact">FACT</span></td></tr>
+        <tr><td>Retailer website product pages</td><td>Beckham assets on Currys, Amazon (UK+US), NinjaKitchen.com. Product name itself = "by David Beckham" in SKU</td><td><span class="badge badge-fact">FACT</span></td></tr>
+        <tr><td>Product launch amplification</td><td>CEO confirmed 25 new products flagged for Beckham amplification in 2025</td><td><span class="badge badge-rep">REPORTED</span></td></tr>
+        <tr><td>Social (paid + organic)</td><td>40% of $700M digital budget = social. Ambassador assets run as paid social ads</td><td><span class="badge badge-rep">REPORTED</span></td></tr>
+        <tr><td>Premium cultural placement</td><td>F1 film (Apple TV+, Brad Pitt, 2025) — product placement alongside ambassador campaigns</td><td><span class="badge badge-rep">REPORTED</span></td></tr>
+        <tr><td>Retail events / in-store</td><td>Not confirmed for Spain. UK Currys in-store confirmed for Luxe Café Pro Beckham edition</td><td><span class="badge badge-inf">INFERENCE</span></td></tr>
+        <tr><td>CRM / email</td><td>Not confirmed publicly</td><td>Not disclosed</td></tr>
+      </table></div>
+    </div>
+    <div>
+      <div class="card card-amber">
+        <h4>What "still images for retailer.com and in-store" can mean in practice</h4>
+        <p style="margin-bottom:8px">The proposal says: <em>"Still images for SharkNinja.com, retailer.com and in-store retailers."</em></p>
+        <p>In practice this can include: website hero banners · product page lifestyle imagery · Amazon A+ content · promotional display stands · shelf talkers · window graphics · flyers · promotional leaflets · Black Friday/discount campaigns · email headers · retailer paid social.<br><br>Without explicit restrictions, an approved photo of Pau holding a Ninja can legally appear on: <strong>"PAU GASOL RECOMMENDS — NOW 30% OFF"</strong> at El Corte Inglés. This is a real risk. See §16 for safeguards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 PAU GASOL FIT -->
+<section class="section" id="s10">
+  <div class="sec-eyebrow"><span class="t-en">10 · Talent Intelligence</span><span class="t-es">10 · Inteligencia de Talento</span></div>
+  <div class="sec-title"><span class="t-en">Pau Gasol — Strategic Fit Assessment</span><span class="t-es">Pau Gasol — Valoración del Encaje Estratégico</span></div>
+  <div class="sec-sub"><span class="t-en">Pau's territory is specific, credentialed, and unique in the SharkNinja ambassador ecosystem. This section maps where the fit is genuine and where it would be forced.</span><span class="t-es">El territorio de Pau es específico, acreditado y único en el ecosistema de ambassadors de SharkNinja. Esta sección mapea dónde el encaje es genuino y dónde sería forzado.</span></div>
+  <div class="grid-3" style="margin-bottom:24px">
+    <div class="card card-gold"><h4>Institutional nutrition credibility</h4><p><span class="badge badge-fact">FACT</span> UNICEF Global Champion for Nutrition and Zero Childhood Obesity since 2019. Beyond celebrity advocacy — he presents to governments and participates in WHO-adjacent policy work. No other SharkNinja ambassador is a global health advocate at institutional level.</p></div>
+    <div class="card card-gold"><h4>Genuine foodie identity</h4><p><span class="badge badge-rep">PUBLICLY REPORTED</span> NBC Los Angeles documented him as having "maybe the most refined palate in the NBA" during his Lakers career. Personal friend of Chef José Andrés (The Bazaar). Investor in specialty coffee brand Café de Finca. Attended Michelin-starred restaurants as a deliberate cultural practice — not for PR.</p></div>
+    <div class="card card-gold"><h4>Perfect family timing</h4><p><span class="badge badge-fact">FACT</span> Pau is father of three young children born in 2020, 2022, and 2026 — actively parenting during the exact window of a SharkNinja deal. His family kitchen story is not manufactured. It is happening right now.</p></div>
+  </div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Territory</th><th>Strength</th><th>Ninja product connection</th><th>Notes</th></tr>
+    <tr><td>Healthy cooking for family</td><td><span class="badge badge-strong">Strong</span></td><td>Air Fryers, Multi-cookers, Blenders</td><td>Gasol Foundation mission + personal family narrative</td></tr>
+    <tr><td>Performance nutrition</td><td><span class="badge badge-strong">Strong</span></td><td>Blenders, food prep, Thirsti</td><td>20-year NBA career + current health investor portfolio</td></tr>
+    <tr><td>Outdoor / Mediterranean cooking</td><td><span class="badge badge-strong">Strong</span></td><td>Woodfire, FlexFlame</td><td>Barcelona upbringing; Spain's asador culture; hosting gatherings</td></tr>
+    <tr><td>Gastronomy / food culture</td><td><span class="badge badge-strong">Strong</span></td><td>Coffee, multi-cookers, Combi</td><td>José Andrés friendship; Joan Roca (Foundation board); Café de Finca investor</td></tr>
+    <tr><td>Spain / LATAM identity</td><td><span class="badge badge-strong">Strong</span></td><td>Full portfolio for Spain market</td><td>Most decorated Spanish athlete ever; NBC LATAM reach; IOC Chair</td></tr>
+    <tr><td>Childhood health & nutrition</td><td><span class="badge badge-strong">Strong</span></td><td>Thirsti (cleanest fit), blenders, air fryers</td><td>UNICEF + Gasol Foundation mission; enables impact layer</td></tr>
+    <tr><td>Ice cream / frozen desserts</td><td><span class="badge badge-risk-high">Risky</span></td><td>Ninja CREAMi</td><td>UNICEF childhood obesity mandate = narrative contradiction. See §03.</td></tr>
+    <tr><td>Vacuum cleaners</td><td><span class="badge badge-weak">Weak</span></td><td>Shark PowerDetect</td><td>No authentic territory connection. Would feel contractual.</td></tr>
+    <tr><td>Hair styling / beauty</td><td><span class="badge badge-weak">Weak</span></td><td>Shark Beauty</td><td>Not his territory. Already owned by Klum + Appleton.</td></tr>
+  </table></div>
+  <div class="divider"></div>
+  <div class="pull-quote">
+    <p>The single most compelling narrative: "The Performance Plate at Home." Pau Gasol has spent his post-career arguing that what families eat determines long-term health outcomes. Ninja argues that restaurant-quality cooking is now achievable at home. These are the same argument from two different starting points — one from health advocacy, one from product innovation.</p>
+    <cite>— Advisory synthesis · <span class="badge badge-inf">INFERENCE</span></cite>
+  </div>
+</section>
+
+<!-- 11 GASOL FOUNDATION -->
+<section class="section" id="s11">
+  <div class="sec-eyebrow"><span class="t-en">11 · Foundation Intelligence</span><span class="t-es">11 · Inteligencia: Fundación</span></div>
+  <div class="sec-title"><span class="t-en">Gasol Foundation — The Purpose Layer</span><span class="t-es">Gasol Foundation — La Capa de Propósito</span></div>
+  <div class="sec-sub"><span class="t-en">What separates a Pau Gasol deal from every other SharkNinja ambassador relationship: the Gasol Foundation transforms a commercial endorsement into a movement.</span><span class="t-es">Lo que distingue un deal con Pau Gasol de cualquier otra relación de ambassador de SharkNinja: la Gasol Foundation transforma un endorsement comercial en un movimiento.</span></div>
+  <div class="grid-2" style="margin-bottom:24px">
+    <div class="card"><h4>Foundation at a glance</h4><p><span class="badge badge-fact">FACT</span> Co-founded 2013 by Pau and Marc Gasol. Mission: prevent childhood obesity through research and holistic programming. Four pillars: physical activity, healthy eating, sleep quality, emotional wellbeing. Active in US (LA base) and Spain. Over 100,000 children and families reached.</p></div>
+    <div class="card"><h4>Joan Roca — the culinary anchor</h4><p><span class="badge badge-fact">FACT</span> Joan Roca (El Celler de Can Roca, 3 Michelin stars, #1 World's 50 Best Restaurants 2013+2015) is a Patron of the Gasol Foundation Spain board. This relationship is institutional — not a paid appearance. A Ninja activation could bring this relationship public for the first time.</p></div>
+    <div class="card"><h4>Valentí Fuster — medical authority</h4><p><span class="badge badge-fact">FACT</span> The Foundation's patron board includes Dr. Valentí Fuster (Director of Mount Sinai Heart, NYC; one of the world's most cited cardiologists). Scientific credibility is embedded in the governance, not bolted on.</p></div>
+    <div class="card"><h4>PASOS Study — research asset</h4><p><span class="badge badge-fact">FACT</span> The Foundation produced Spain's first national study tracking 3,201 children's health behaviours (diet, activity, sleep, socioeconomic context). Annual data = annual PR hooks. A SharkNinja partnership could generate a "Performance Plate Index" tracking family nutrition improvements through programme participants.</p></div>
+  </div>
+  <div class="divider"></div>
+  <p style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Proposed Two-Layer Structure</p>
+  <div class="arch-layer">
+    <div class="arch-layer-num">Layer 1 · Commercial</div>
+    <div class="arch-layer-title">Pau Gasol × Ninja</div>
+    <div class="arch-layer-desc">Standard ambassador deal — product promotion, content, appearances, PR. Anchored in outdoor cooking, healthy family meals, performance nutrition. This is what the current $250K proposal covers.</div>
+  </div>
+  <div class="arch-layer">
+    <div class="arch-layer-num">Layer 2 · Impact</div>
+    <div class="arch-layer-title">Gasol Foundation × SharkNinja</div>
+    <div class="arch-layer-desc">Structured programme investment. Ninja kitchen appliances deployed into Foundation programme sites (summer camps, schools, community centres). Children's cooking workshops with Ninja equipment. Annual "Healthy Kitchen Challenge" with measurable outcomes. Precedent: Brady + MassChallenge Innovation Challenge with $25K prize and live finale event. Foundation provides data; SharkNinja provides equipment and co-branding; Pau bridges both worlds.</div>
+  </div>
+  <div style="margin-top:10px;padding:12px 14px;background:var(--gold3);border-left:3px solid var(--gold);font-size:11.5px;color:var(--text2)">
+    <strong style="color:var(--gold)">Why SharkNinja should want this:</strong> The Brady Innovation Challenge generated PR with zero celebrity-adjacent narrative risk. A Gasol Foundation programme generates equivalent PR with a nutritional health story that is exactly on-brand for Ninja's cooking portfolio. No other SharkNinja ambassador has a Foundation. This is Pau's exclusive asset — and it makes the deal defensible to any journalist asking "why is the childhood obesity champion selling kitchen appliances?"
+  </div>
+</section>
+
+<!-- 12 GASTRONOMY -->
+<section class="section" id="s12">
+  <div class="sec-eyebrow"><span class="t-en">12 · Ecosystem</span><span class="t-es">12 · Ecosistema</span></div>
+  <div class="sec-title"><span class="t-en">Gastronomy, Coffee &amp; the Café de Finca Question</span><span class="t-es">Gastronomía, Café &amp; la Cuestión Café de Finca</span></div>
+  <div class="sec-sub"><span class="t-en">Pau's gastronomy ecosystem is an asset — with one complication that must be resolved before signing.</span><span class="t-es">El ecosistema gastronómico de Pau es un activo — con una complicación que debe resolverse antes de firmar.</span></div>
+  <div class="grid-2" style="margin-bottom:20px">
+    <div>
+      <p style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:10px">Gastronomy asset map</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>Connection</th><th>Nature</th><th>Label</th></tr>
+        <tr><td>Joan Roca (El Celler de Can Roca)</td><td>Gasol Foundation patron. Institutional, not activated publicly yet.</td><td><span class="badge badge-fact">FACT</span></td></tr>
+        <tr><td>José Andrés (World Central Kitchen)</td><td>Personal friend. Collaborated on COVID nutrition programme. Gasol Foundation summit featured Andrés.</td><td><span class="badge badge-fact">FACT</span></td></tr>
+        <tr><td>Café de Finca (specialty coffee)</td><td>Investor + public campaign participant. See conflict analysis below.</td><td><span class="badge badge-fact">FACT</span></td></tr>
+        <tr><td>Roy Choi</td><td>Appeared at Gasol Foundation Nutrition Summit (2020/21).</td><td><span class="badge badge-rep">REPORTED</span></td></tr>
+        <tr><td>Cooking content / kitchen video</td><td>None found. Documented white space.</td><td><span class="badge badge-fact">FACT (absence)</span></td></tr>
+      </table></div>
+    </div>
+    <div>
+      <div class="card card-amber">
+        <h4>Café de Finca — Conflict Assessment</h4>
+        <p><span class="badge badge-fact">FACT</span> Café de Finca is a premium specialty coffee brand (Castelldefels, founded 2009). Investors: Pau Gasol, Marc Gasol, Ter Stegen, Falcao, Ansu Fati. €2.5M raised 2024. Pau participated publicly in "Descubre tu origen" campaign (assigned Ethiopia/Sidamo origin).</p>
+        <br>
+        <p><strong style="color:var(--amber)">The conflict:</strong> Ninja Luxe Café Pro = premium bean-to-cup espresso machine ($749). Café de Finca = sells the beans. Asking Pau to promote a machine while he is an investor/campaign face of a premium coffee brand creates brand equity tension.</p>
+        <br>
+        <p><strong style="color:var(--green)">The resolution:</strong> Three options: (A) <strong>Exclude Ninja coffee machines</strong> from the deal entirely — focus on cooking/outdoor/blender portfolio; (B) <strong>Carve out Café de Finca</strong> explicitly so it is not a competing brand, and avoid coffee machine content; (C) <strong>Co-brand integration</strong> — "Café de Finca beans, Ninja machine" — requires formal agreement between both brands. Note: Beckham already has the Luxe Café Pro. Pau doesn't need to duplicate that territory.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card card-gold">
+    <h4>The "Una Noche con Roca y Gasol" concept</h4>
+    <p>Pau Gasol + Joan Roca co-host a private dinner for 40–60 guests (press, retail buyers, cultural influencers) at a Barcelona venue. Roca develops a menu using Ninja appliances. Live-streamed component. This activates an institutional relationship (Foundation patronato) publicly for the first time, positions Ninja as the kitchen technology trusted by a 3-Michelin-star chef, and gives SharkNinja its Spain direct-market launch moment. The culinary credibility is impossible to manufacture — it is only available through Pau's authentic network.</p>
+  </div>
+</section>
+
+<!-- 13 EXPERIENCES -->
+<section class="section" id="s13">
+  <div class="sec-eyebrow"><span class="t-en">13 · Experiential</span><span class="t-es">13 · Experiencial</span></div>
+  <div class="sec-title"><span class="t-en">Experiential Concepts — Transforming the Two PAs</span><span class="t-es">Conceptos Experienciales — Transformar las Dos Apariciones</span></div>
+  <div class="sec-sub"><span class="t-en">The proposal includes 2× Personal Appearances and 1× Dinner. These are the highest-value deliverables in the deal. Don't think "Pau invites famous friends." Think: can we turn the dinner into an ownable property?</span><span class="t-es">La propuesta incluye 2× apariciones personales y 1× cena. Estos son los activos de mayor valor del deal. No pensar "Pau invita a amigos famosos." Pensar: ¿podemos convertir la cena en una propiedad propia y recurrente?</span></div>
+
+  <div class="concept">
+    <div class="concept-num">Concept 01</div>
+    <h4>Una Noche con Roca y Gasol — The Culinary Authority Dinner</h4>
+    <p style="font-size:12.5px;color:var(--text2)">A private dinner in Barcelona where Joan Roca (3 Michelin stars, Foundation patron) develops a menu of healthy family recipes using Ninja appliances. Pau hosts. Guests: 40–50 selected media, retail buyers, and SharkNinja Penthouse programme members. Fully documented content.</p>
+    <div class="concept-grid">
+      <div class="concept-item"><label>Value for Ninja</label><p>A Michelin-starred chef publicly endorsing your kitchen technology. No amount of paid advertising achieves this credibility. Spain market launch anchor.</p></div>
+      <div class="concept-item"><label>Value for Pau</label><p>Activates the Joan Roca relationship publicly for the first time. Positions him as the bridge between elite gastronomy and accessible family health. Content that defines a new public territory.</p></div>
+      <div class="concept-item"><label>Foundation layer</label><p>Dinner themed around childhood nutrition; one Foundation programme announced at the event; donation mechanic to Foundation from SharkNinja tied to dinner.</p></div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-num">Concept 02</div>
+    <h4>The Performance Plate Live — Barcelona Pop-Up Kitchen</h4>
+    <p style="font-size:12.5px;color:var(--text2)">A one-day public cooking experience at an iconic Barcelona location (Mercat de Santa Caterina, Barceloneta, etc.). Pau and a guest chef run live cooking demonstrations using Ninja appliances. 200–300 invited attendees (families, Gasol Foundation participants, press, SharkNinja consumers). Content captured across the full day.</p>
+    <div class="concept-grid">
+      <div class="concept-item"><label>Value for Ninja</label><p>Product utility demonstration at scale. Direct consumer experience. UGC content factory. Spain brand activation moment with local cultural resonance.</p></div>
+      <div class="concept-item"><label>Value for Pau</label><p>First-ever public cooking content moment. Visual launch of a new content territory. Connects to Foundation families in an authentic community setting.</p></div>
+      <div class="concept-item"><label>Foundation layer</label><p>Foundation families invited as priority guests. "Healthy Plate" workshop element for children. Foundation branding throughout.</p></div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-num">Concept 03</div>
+    <h4>Ninja × Gasol Foundation Healthy Kitchen Challenge</h4>
+    <p style="font-size:12.5px;color:var(--text2)">A national (Spain + US) programme deploying Ninja appliances into schools and summer camps running Gasol Foundation programmes. Participants cook healthy meals. Annual results announced at a live event co-hosted by Pau. Direct parallel to Brady Innovation Challenge but in childhood nutrition territory.</p>
+    <div class="concept-grid">
+      <div class="concept-item"><label>Value for Ninja</label><p>Equipment in front of future adult consumers. Genuine CSR story. Annual media moment. Differentiates from Beckham and Brady with a health and family narrative.</p></div>
+      <div class="concept-item"><label>Value for Pau</label><p>Direct expression of Foundation mission. Not an add-on — it instrumentalises existing infrastructure (camps, schools, programmes already running).</p></div>
+      <div class="concept-item"><label>Foundation layer</label><p>This IS the Foundation layer. Equipment donation + programming support = measurable community investment with published outcomes data.</p></div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-num">Concept 04</div>
+    <h4>Café de Finca × Ninja Luxe Café — IF Coffee Conflict Resolved</h4>
+    <p style="font-size:12.5px;color:var(--text2)">Co-branded limited edition: Café de Finca Ethiopia single-origin (Pau's assigned origin from "Descubre tu origen" campaign) + Ninja Luxe Café machine. "The bean and the machine — both built for origin." Transforms a potential conflict into a collaboration. Requires formal agreement between SharkNinja and Café de Finca.</p>
+    <div class="concept-grid">
+      <div class="concept-item"><label>Value for Ninja</label><p>Solves the "which beans?" question for the premium Luxe Café machine. Differentiates from Beckham's Luxe Café with a Spanish-origin story. Adds provenance narrative.</p></div>
+      <div class="concept-item"><label>Value for Pau</label><p>Converts an investment asset into a deal component. Authentically personal — he chose Ethiopia specifically and publicly in the Café de Finca campaign.</p></div>
+      <div class="concept-item"><label>Foundation layer</label><p>Sourcing story connects to Ethiopia food systems / development narrative. Optional connection to food justice themes Pau has advocated for via UNICEF.</p></div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-num">Concept 05</div>
+    <h4>El Desayuno de los Campeones — Family Morning Content Series</h4>
+    <p style="font-size:12.5px;color:var(--text2)">A 6-episode social content series: Pau in his own home, preparing breakfast and morning meals for his family using Ninja appliances (blender, coffee, multi-cooker). Nutritional framework from Gasol Foundation's "My Healthy Plate." Simple. Authentic. The cooking content white space this creates is unprecedented in Pau's public persona.</p>
+    <div class="concept-grid">
+      <div class="concept-item"><label>Value for Ninja</label><p>Social-first product demonstration through a genuinely credentialed health lens. Not lifestyle entertainment — clinical nutrition made attainable. Self-shot format (matches Beckham's authentic social style).</p></div>
+      <div class="concept-item"><label>Value for Pau</label><p>Launches a new content territory (home cooking) that extends his platform beyond sport and formal advocacy into daily family life.</p></div>
+      <div class="concept-item"><label>Foundation layer</label><p>Foundation nutrition educators co-validate recipes. Published as free family resources on gasolfoundation.org with Ninja co-branding.</p></div>
+    </div>
+  </div>
+</section>
+<!-- 14 DEAL BREAKDOWN -->
+<section class="section" id="s14">
+  <div class="sec-eyebrow"><span class="t-en">14 · Deal Analysis</span><span class="t-es">14 · Análisis del Deal</span></div>
+  <div class="sec-title"><span class="t-en">Deal Breakdown — Line by Line</span><span class="t-es">Desglose del Deal — Cláusula a Cláusula</span></div>
+  <div class="sec-sub"><span class="t-en">Each clause of the proposal, interpreted, benchmarked, and assessed. <em>Note: no contractual terms have been fabricated. Benchmarks are advisory inferences from public precedents.</em></span><span class="t-es">Cada cláusula de la propuesta, interpretada, comparada con precedentes y valorada. <em>Nota: no se han inventado términos contractuales. Los benchmarks son inferencias asesoras de precedentes públicos.</em></span></div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Clause</th><th>What it means</th><th>Benchmark / Context</th><th>Risk</th><th>Question</th><th>Recommendation</th></tr>
+    <tr><td><strong>6-month term</strong></td><td>Short engagement window. Limits relationship depth and creative iteration.</td><td>Beckham: multi-year from day one. Brady: multi-year. Klum: multi-year.</td><td><span class="badge badge-risk-med">Medium</span></td><td>Is this an option-to-extend or a hard 6-month ceiling?</td><td>Request 12-month minimum with 6-month extension option. Short term signals SharkNinja is testing, not investing.</td></tr>
+    <tr><td><strong>Territory: Spain</strong></td><td>Pau's obligations (content, appearances, exclusivity) apply in Spain.</td><td>Heidi Klum = EMEA / Germany focus. Precedent for market-specific territory.</td><td><span class="badge badge-risk-low">Low</span></td><td>—</td><td>Acceptable for a Spain market-launch deal.</td></tr>
+    <tr><td><strong>$250K investment</strong></td><td>Total deal fee for 6 months including all deliverables.</td><td>No public benchmarks. Advisory inference: for a global-stature ambassador (IOC Chair, UNICEF Global Champion, NBA legend) with EMEA usage rights, this is below market for 6 months.</td><td><span class="badge badge-risk-med">Medium</span></td><td>Does $250K include all usage rights, exclusivity, and expenses? Is this a base fee with production costs separate?</td><td>Negotiate upward, especially if EMEA usage is confirmed. A LATAM usage extension should carry additional fee.</td></tr>
+    <tr><td><strong>6× Instagram posts → TikTok</strong></td><td>Six posts on Pau's IG, synced to TikTok. Both platforms.</td><td>Beckham social content is extensive. Six posts over 6 months is relatively modest — less than one/month.</td><td><span class="badge badge-risk-low">Low</span></td><td>What format mix is expected? Produced vs self-shot? Long-form vs Reels?</td><td>Ensure mix: self-shot (authentic) + produced (brand quality). Protect right to approval of all captions and product claims.</td></tr>
+    <tr><td><strong>2× Instagram Stories</strong></td><td>Two Stories over 6 months. Low volume.</td><td>Stories are ephemeral — disappear after 24h unless saved. Very limited deliverable.</td><td><span class="badge badge-risk-low">Low</span></td><td>Should these be saved as Highlights on Pau's profile?</td><td>Negotiate for Stories to be saved as Highlights (permanent) given low volume.</td></tr>
+    <tr><td><strong>1× 8-hour production day</strong></td><td>One full day of professional production. All assets captured in 8 hours.</td><td>Industry standard for campaign shoot. But 8 hours is tight for multiple products + stills + video.</td><td><span class="badge badge-risk-med">Medium</span></td><td>How many products? How many looks? What is the expected output count?</td><td>Define expected deliverable count from the shoot before signing. Consider: 1 hero video + 3–4 social cuts + 20–30 stills. Add a second production day for experiential content.</td></tr>
+    <tr><td><strong>Bilingual (EN + ES)</strong></td><td>Content captured in both languages. SharkNinja can use English for non-Spain EMEA.</td><td>Beckham delivers English-only global content. Bilingual capture for a Spanish-native talent is correct positioning.</td><td><span class="badge badge-risk-low">Low</span></td><td>Which language is the primary version for Spain DTC channels?</td><td>Spanish should be primary for Spanish market. English for EMEA/global use only — not default for Spain campaigns.</td></tr>
+    <tr><td><strong>Still images for SharkNinja.com, retailer.com, in-store</strong></td><td>Pau's likeness used in product pages, retail banners, and physical in-store materials.</td><td>Beckham: product SKU literally named "by David Beckham." Retail usage is deep and lasting.</td><td><span class="badge badge-risk-high">HIGH</span></td><td>Which retailers? Which specific formats? Can assets appear in price/discount promotions?</td><td>Require: specific retailer approval list + no price-led/discount creative without separate written consent. See §16.</td></tr>
+    <tr><td><strong>30× signed merch</strong></td><td>Thirty items of signed SharkNinja merchandise for retail incentive programmes.</td><td>Low-risk. Giveaway mechanic.</td><td><span class="badge badge-risk-low">Low</span></td><td>What products? What retail context?</td><td>Specify product categories. Ensure signed items are premium products only (no discount items).</td></tr>
+    <tr><td><strong>2× 30-min PR interviews</strong></td><td>Two media interviews, 30 minutes each. SharkNinja selects press.</td><td>Standard ambassador media obligation.</td><td><span class="badge badge-risk-med">Medium</span></td><td>Which publications? Spanish or international? Who selects the journalist?</td><td>Pau (or rep) must approve the publication/journalist selection in advance. No obligation to participate in interviews that conflict with his advocacy positions.</td></tr>
+    <tr><td><strong>2× 2-hour Personal Appearances</strong></td><td>Two events, two hours each. Unspecified format.</td><td>Beckham: Inter Miami tailgate (professional, brand-produced event). PAs should be premium, not retail promotional appearances.</td><td><span class="badge badge-risk-med">Medium</span></td><td>What format? Brand event vs retail event vs media event? Who selects venue/guests?</td><td>Define format in advance. PAs should be brand events or experiential activations — not in-store retail signings or discount launch events. See §13 for concept proposals.</td></tr>
+    <tr><td><strong>Dinner hosted by Pau — Penthouse programme guests</strong></td><td>Pau hosts a dinner including SharkNinja Penthouse guests (top retail/trade clients).</td><td>Unique deliverable not standard in other deals. High commercial value for SharkNinja's B2B relationships.</td><td><span class="badge badge-risk-med">Medium</span></td><td>Who are the Penthouse guests? How many SharkNinja guests vs Pau's network guests? Who controls the invite list?</td><td>Negotiate: guest list must be co-curated with Pau's team. The dinner has more value if it activates Pau's authentic network (Joan Roca, Foundation community, chefs) than if it's purely SharkNinja's trade clients.</td></tr>
+    <tr><td><strong>EMEA usage of all assets</strong></td><td>All content captured can be used across EMEA in paid, organic, digital, social, e-commerce, retail.</td><td>CRITICAL MISMATCH vs Spain territory. See §15.</td><td><span class="badge badge-risk-high">HIGH</span></td><td>Where exactly can Pau's likeness appear? Which countries? Which retailers?</td><td>Resolve before signing. See §15 for full analysis.</td></tr>
+    <tr><td><strong>Full portfolio (Shark Home + Beauty + Ninja)</strong></td><td>Pau can be asked to promote any product across the entire SharkNinja catalogue.</td><td>Beckham = Ninja only (cooking focus). Brady = Ninja (outdoor focus). No ambassador appears across full portfolio.</td><td><span class="badge badge-risk-high">HIGH</span></td><td>Which specific products? Is a vacuum campaign actually contemplated for Pau?</td><td>Negotiate to a named product list. Minimum: exclude Shark Beauty (wrong territory) and Shark vacuums (tone risk). Require CREAMi exclusion or explicit creative brief restriction. See §03 fit matrix.</td></tr>
+    <tr><td><strong>Exclusivity within activated categories</strong></td><td>Pau cannot work with competing brands in the same product categories SharkNinja activates against.</td><td>Beckham: ran Nespresso ad in UK same year as Ninja Luxe Café deal — suggests Ninja coffee exclusivity is category-specific, not blanket appliance exclusivity.</td><td><span class="badge badge-risk-high">HIGH</span></td><td>Which categories exactly? Is Café de Finca a conflict? Is Therabody a conflict?</td><td>Require a closed and named category list. Carve-outs for: Café de Finca (coffee beans ≠ coffee machines), Therabody, Oura Ring, INDYA, existing Foundation partnerships. See §17.</td></tr>
+    <tr><td><strong>Gifting — SharkNinja products</strong></td><td>Products provided to Pau and his network.</td><td>Standard. Enables authentic product use before content creation.</td><td><span class="badge badge-risk-low">Low</span></td><td>Volume? Which products? For personal use only or can Pau gift further?</td><td>Accept. Ensure gifted products cover all categories Pau will promote — mandatory for authentic self-shot content.</td></tr>
+  </table></div>
+</section>
+
+<!-- 15 EMEA USAGE -->
+<section class="section" id="s15">
+  <div class="sec-eyebrow"><span class="t-en">15 · Critical Issue</span><span class="t-es">15 · Cuestión Crítica</span></div>
+  <div class="sec-title"><span class="t-en">Territory vs. EMEA Usage — The Unresolved Risk</span><span class="t-es">Territorio vs. Uso EMEA — El Riesgo Sin Resolver</span></div>
+  <div class="sec-sub"><span class="t-en">The proposal states: Territory: Spain / Usage: EMEA. These two clauses are in fundamental tension and must be resolved before signing.</span><span class="t-es">La propuesta indica: Territorio: España / Uso: EMEA. Estas dos cláusulas están en tensión fundamental y deben resolverse antes de firmar.</span></div>
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card card-red">
+      <h4>The conflict</h4>
+      <p><strong>Territory = Spain</strong> means Pau's obligations and exclusivity apply in Spain. He is not required to promote SharkNinja in France or Germany.<br><br><strong>EMEA Usage</strong> means SharkNinja can deploy all captured content — paid media, retailer.com, social, e-commerce — anywhere across Europe, Middle East, and Africa.<br><br>This means: a campaign Pau approved for Spain could run as paid media in Germany, on French retailer websites, or in a UAE in-store display — without any additional consent from Pau.</p>
+    </div>
+    <div class="card card-amber">
+      <h4>Questions that must be answered</h4>
+      <ul style="font-size:12px;color:var(--text2);line-height:2;padding-left:16px">
+        <li>Can Pau's image appear in paid media campaigns outside Spain?</li>
+        <li>Can retailers outside Spain (Currys UK, FNAC France, MediaMarkt Germany) use Pau's likeness?</li>
+        <li>Can SharkNinja EMEA local teams access and adapt the assets independently?</li>
+        <li>Can content appear on pan-European websites (sharkninja.eu, ninjakitchen.eu)?</li>
+        <li>Can Amazon.co.uk or Amazon.de list products with Pau's image?</li>
+        <li>Do assets remain live after the 6-month term? What is the takedown period?</li>
+        <li>If assets run in EMEA, does Pau's exclusivity apply in those territories too?</li>
+      </ul>
+    </div>
+  </div>
+  <div style="padding:14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:2px;font-size:12px;color:var(--text2);line-height:1.7">
+    <strong style="color:var(--red)">Advisory recommendation:</strong> The EMEA usage right in a Spain-territory deal should carry an additional fee. If SharkNinja wants Pau's assets running across EMEA as paid media, they are effectively getting a pan-European ambassador at a Spain ambassador price. Either (A) restrict usage to Spain only + SharkNinja.com global, or (B) expand the fee to reflect the EMEA usage value. Option B must be accompanied by a named territory list and a clear definition of "EMEA" (which countries exactly). <span class="badge badge-inf">INFERENCE — requires legal review</span>
+  </div>
+</section>
+
+<!-- 16 RETAIL RISK -->
+<section class="section" id="s16">
+  <div class="sec-eyebrow"><span class="t-en">16 · Critical Issue</span><span class="t-es">16 · Cuestión Crítica</span></div>
+  <div class="sec-title"><span class="t-en">Retail Risk — Protecting Pau's Image in Commercial Contexts</span><span class="t-es">Riesgo Retail — Proteger la Imagen de Pau en Contextos Comerciales</span></div>
+  <div class="sec-sub"><span class="t-en">The proposal's "still images for retailer.com and in-store retailers" clause can expand into territory Pau would not approve if left undefined.</span><span class="t-es">La cláusula de "imágenes para retailer.com y tiendas físicas" puede expandirse a territorios que Pau no aprobaría si se deja sin definir.</span></div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Retail Format</th><th>Risk Level</th><th>Example</th><th>Required Protection</th></tr>
+    <tr><td>Product page lifestyle image (SharkNinja.com)</td><td><span class="badge badge-risk-low">Low</span></td><td>Pau using a Ninja air fryer in a kitchen lifestyle photo</td><td>Standard approval. Acceptable.</td></tr>
+    <tr><td>Retailer.com product page (El Corte Inglés, Amazon)</td><td><span class="badge badge-risk-med">Medium</span></td><td>Pau's image on the Ninja product listing page</td><td>Approved retailers must be named. Retail context must be approved in advance.</td></tr>
+    <tr><td>Retailer homepage banner / hero</td><td><span class="badge badge-risk-med">Medium</span></td><td>El Corte Inglés homepage featuring Pau + Ninja</td><td>Requires separate approval per placement.</td></tr>
+    <tr><td>Price-led creative</td><td><span class="badge badge-risk-high">HIGH</span></td><td>"PAU GASOL RECOMMENDS — NOW 30% OFF" flyer</td><td>Explicitly prohibited without additional written consent.</td></tr>
+    <tr><td>Black Friday / discount campaigns</td><td><span class="badge badge-risk-high">HIGH</span></td><td>Pau's image in a Black Friday promotional leaflet</td><td>Explicitly prohibited. Pau's image must not appear in price/discount contexts.</td></tr>
+    <tr><td>Promotional/clearance POS</td><td><span class="badge badge-risk-high">HIGH</span></td><td>In-store clearance shelf talker with Pau's image</td><td>Explicitly prohibited.</td></tr>
+    <tr><td>CRM / email marketing</td><td><span class="badge badge-risk-med">Medium</span></td><td>SharkNinja newsletter with Pau's image to 5M subscribers</td><td>Requires definition as a permitted usage with volume/frequency cap.</td></tr>
+    <tr><td>Third-party retailer social / paid media</td><td><span class="badge badge-risk-high">HIGH</span></td><td>El Corte Inglés running paid social ads with Pau's image</td><td>Explicitly prohibited. Retailers receive assets for display only — not for their own paid media.</td></tr>
+    <tr><td>Retailer print catalogue</td><td><span class="badge badge-risk-high">HIGH</span></td><td>Pau in a printed Fnac catalogue alongside discounted Ninja products</td><td>Prohibited unless context-approved.</td></tr>
+  </table></div>
+  <div style="margin-top:14px;padding:12px 14px;background:var(--gold3);border-left:3px solid var(--gold);font-size:11.5px;color:var(--text2)"><strong style="color:var(--gold)">Key principle:</strong> Approval of an image does NOT constitute approval of every context in which that image may be used. Each new retail context — especially any context where Pau's image is adjacent to a price, discount, or clearance message — requires separate written approval. This must be explicit in the contract.</div>
+</section>
+
+<!-- 17 EXCLUSIVITY -->
+<section class="section" id="s17">
+  <div class="sec-eyebrow"><span class="t-en">17 · Critical Issue</span><span class="t-es">17 · Cuestión Crítica</span></div>
+  <div class="sec-title"><span class="t-en">Exclusivity — Category Map &amp; Required Carve-Outs</span><span class="t-es">Exclusividad — Mapa de Categorías y Excepciones Necesarias</span></div>
+  <div class="sec-sub"><span class="t-en">"Exclusivity within SharkNinja product categories activated against during the term." This phrase can be broad or narrow. It must be made explicit.</span><span class="t-es">"Exclusividad en las categorías de producto de SharkNinja activadas durante el período." Esta frase puede ser amplia o estrecha. Debe hacerse explícita.</span></div>
+  <div class="tbl-wrap"><table>
+    <tr><th>SharkNinja Category</th><th>If Activated</th><th>Excluded Competitor Brands</th><th>Pau Existing Conflict?</th><th>Required Carve-Out</th></tr>
+    <tr><td>Ninja Kitchen Appliances (air fryers, multi-cookers, grills)</td><td>Yes (expected)</td><td>Instant Pot, Philips Airfryer, Breville, Thermomix, Tefal</td><td>None identified</td><td>None required</td></tr>
+    <tr><td>Ninja Outdoor Cooking (Woodfire, FlexFlame)</td><td>Yes (expected)</td><td>Weber, Traeger, Napoleon, Big Green Egg</td><td>None identified</td><td>None required</td></tr>
+    <tr><td>Ninja Blenders / Food Prep</td><td>Yes (expected)</td><td>Vitamix, NutriBullet, KitchenAid</td><td>None identified</td><td>None required</td></tr>
+    <tr><td>Ninja Coffee (Luxe Café)</td><td>Potentially</td><td>Nespresso, De'Longhi, Breville, Jura</td><td><strong style="color:var(--amber)">Café de Finca</strong> — investor + campaign face</td><td>Carve-out: Café de Finca (coffee beans ≠ coffee machines). If SharkNinja activates coffee machines, Café de Finca must be explicitly preserved as a permitted ongoing association.</td></tr>
+    <tr><td>Ninja CREAMi / Ice Cream</td><td>Possible</td><td>Cuisinart, Breville</td><td>UNICEF advocacy conflict</td><td>Either exclude this category entirely, or ensure no Foundation/health/children context overlap.</td></tr>
+    <tr><td>Ninja Thirsti / Hydration</td><td>Possible</td><td>SodaStream, Brita</td><td>None identified — clean fit</td><td>None required. Recommend activating this category.</td></tr>
+    <tr><td>Shark Home (vacuums)</td><td>Unlikely for Pau</td><td>Dyson, iRobot, Miele</td><td>None</td><td>Recommend: don't activate Shark Home for Pau. If SharkNinja insists, ensure no Dyson exclusivity that would block any potential future relationship.</td></tr>
+    <tr><td>Shark Beauty</td><td>Unlikely for Pau</td><td>Dyson, ghd, Revlon, T3</td><td>None</td><td>Recommend: exclude Shark Beauty from Pau's activated categories. Don't create unnecessary exclusivity in a territory where Pau has no equity.</td></tr>
+  </table></div>
+  <div style="margin-top:14px" class="grid-2">
+    <div class="card card-amber">
+      <h4>Required explicit carve-outs</h4>
+      <ul style="font-size:12px;color:var(--text2);line-height:2;padding-left:16px">
+        <li><strong>Café de Finca</strong> — investment + existing campaign</li>
+        <li><strong>Therabody</strong> — active multi-role partnership</li>
+        <li><strong>Oura Ring</strong> — active investment + ambassador</li>
+        <li><strong>INDYA</strong> — sports nutrition, investor + advisor</li>
+        <li><strong>Gasol Foundation corporate sponsors</strong> — any existing foundation partner that could technically be in a conflicting category</li>
+        <li><strong>UNICEF</strong> — governance role, not commercial, but should be explicitly preserved</li>
+      </ul>
+    </div>
+    <div class="card card-green">
+      <h4>Preferred exclusivity structure</h4>
+      <p>Instead of: "all categories activated against"<br><br>Propose: a <strong>closed named list</strong> of competing brands (not categories). Example: "Pau agrees not to endorse Instant Pot, Philips Airfryer, Weber, Traeger, NutriBullet, Vitamix during the term." This provides SharkNinja the protection they need while giving Pau clear, bounded obligations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 18 CREATIVE CONTROL -->
+<section class="section" id="s18">
+  <div class="sec-eyebrow"><span class="t-en">18 · Legal Framework</span><span class="t-es">18 · Marco Legal</span></div>
+  <div class="sec-title"><span class="t-en">Creative Control Framework</span><span class="t-es">Marco de Control Creativo</span></div>
+  <div class="sec-sub"><span class="t-en">The approval process that must be contractually guaranteed. Without this, any approved asset can be repurposed in any context.</span><span class="t-es">El proceso de aprobación que debe garantizarse contractualmente. Sin él, cualquier activo aprobado puede reutilizarse en cualquier contexto.</span></div>
+  <p style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:12px">Required approval flow</p>
+  <div class="flow">
+    <div class="flow-step">Brief</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Product selection</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Creative concept</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Script / key messages</div><div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color:var(--gold);color:var(--gold)">PAU APPROVAL</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Production</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Edit</div><div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color:var(--gold);color:var(--gold)">FINAL APPROVAL</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Media / retail context</div><div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color:var(--gold);color:var(--gold)">CONTEXT APPROVAL</div><div class="flow-arrow">→</div>
+    <div class="flow-step">Distribution</div>
+  </div>
+  <div class="divider"></div>
+  <div class="grid-2">
+    <div class="card card-gold"><h4>What Pau must approve</h4><ul style="font-size:12px;color:var(--text2);line-height:2;padding-left:16px"><li>Products and categories to be featured</li><li>Creative concepts and scripts</li><li>Copy, claims, and key messages</li><li>All final edits (video and stills)</li><li>Captions and hashtags</li><li>Paid media placements</li><li>Retail executions and adaptations</li><li>Any third-party usage (retailers, agencies, media partners)</li></ul></div>
+    <div class="card card-red"><h4>Critical principle</h4><p>Approval of an image does NOT equal approval of every possible adaptation. Pau approves a kitchen photo → that does NOT automatically approve:<br><br>"PAU GASOL RECOMMENDS — 30% OFF NOW" on a Black Friday flyer.<br><br>Each material change in context, tone, or commercial message requires new approval. This must be explicit.</p></div>
+  </div>
+</section>
+
+<!-- 19 DRAFT CLAUSE -->
+<section class="section" id="s19">
+  <div class="sec-eyebrow"><span class="t-en">19 · Legal Draft</span><span class="t-es">19 · Borrador Legal</span></div>
+  <div class="sec-title"><span class="t-en">Draft Creative Control Clause</span><span class="t-es">Borrador de Cláusula de Control Creativo</span></div>
+  <div class="sec-sub"><span class="t-en">For discussion purposes only. Does not constitute legal advice. Subject to review by qualified entertainment/IP counsel before use in any agreement.</span><span class="t-es">Solo para fines de discusión. No constituye asesoramiento jurídico. Sujeto a revisión por abogados especializados en entretenimiento/propiedad intelectual antes de su uso en cualquier contrato. La cláusula está redactada en inglés por su naturaleza legal.</span></div>
+  <div class="clause-block">
+    <h5>1. Prior Approval</h5>
+    Ambassador's prior written approval is required for: (a) all products and product categories to be featured; (b) all creative concepts, scripts, and treatments; (c) all copy, claims, product claims, and key messages; (d) all final video edits and final photographic selections; (e) all captions, hashtags, and associated social copy; (f) all paid media placements and paid social adaptations; (g) all retail executions, including product page imagery, in-store displays, promotional materials, and retailer-specific adaptations; (h) any sub-licensing of assets to third parties including retailers, media agencies, and media partners. Approval of a creative asset in one context does not constitute approval of that asset in any other context. Each new deployment context constitutes a new use requiring approval.
+
+    <h5>2. Prohibited Contexts</h5>
+    Without Ambassador's separate prior written consent, assets may not be used in any context that: (a) is price-led, discount-led, or clearance-adjacent; (b) implies Ambassador's personal endorsement of a sale, promotional event, or reduced-price offer; (c) is politically sensitive or potentially controversial; (d) is derogatory to Ambassador or inconsistent with Ambassador's established public reputation; (e) is inconsistent with Ambassador's stated philanthropic or advocacy positions, including but not limited to Ambassador's role as UNICEF Global Champion for Nutrition and Zero Childhood Obesity and Ambassador's role with the Gasol Foundation; (f) positions Ambassador's likeness alongside messages promoting excessive consumption, unhealthy behaviours, or content inconsistent with childhood health and wellbeing advocacy.
+
+    <h5>3. Retail Usage</h5>
+    Retail usage rights are limited to: named and approved retail partners as specified in Schedule [X]; approved creative formats as specified in Schedule [Y]; non-price-led, non-discount, brand-led contexts only. Retailers receiving licensed assets may not create independent adaptations, use assets in their own paid media, or deploy assets in print catalogues, promotional leaflets, price-driven POS, or clearance material without separate written consent from Ambassador.
+
+    <h5>4. Material Changes</h5>
+    Any material change to approved assets — including but not limited to cropping, recolouring, addition of text overlays, combination with other creative elements, or change of deployment context — constitutes a new use requiring new approval under clause 1 above.
+
+    <h5>5. AI and Synthetic Media</h5>
+    Company shall not use generative AI, synthetic media, digital replicas, voice cloning, face replacement, avatar technology, translation/lip-sync alteration, or any other technology to: (a) create new performances or statements by Ambassador; (b) alter Ambassador's voice, likeness, or image beyond standard post-production corrections; (c) generate content that suggests Ambassador made statements, endorsements, or appearances that did not occur. The authorisation to use existing approved assets does not authorise the creation of new performances or appearances by Ambassador through any technological means without separate express written consent.
+
+    <h5>6. Sub-licensing</h5>
+    Retailers, agencies, media partners, and any other third parties receiving licensed assets from Company may use those assets only within the scope of an approved campaign as specified in Schedule [Z]. Third parties may not independently create new uses, adaptations, or deployments of Ambassador's likeness outside that approved scope.
+
+    <h5>7. Post-Term Takedown</h5>
+    Upon expiration or termination of this Agreement, Company shall remove all Ambassador assets from: (a) paid media within [30] days; (b) owned digital channels and websites within [60] days; (c) physical retail and in-store materials within [90] days. Ambassador's likeness shall not be used in any new creative production after the term. Archive use within internal company materials for non-commercial purposes may continue indefinitely.
+
+    <h5>8. Approval Timelines</h5>
+    Ambassador's team shall provide approval or reasoned feedback within [5] business days of receiving any material for approval. Company shall provide a revised version within [5] business days of receiving feedback. If Ambassador's team does not respond within [5] business days, this does not constitute deemed approval; Company shall resubmit.
+  </div>
+</section>
+
+<!-- 20 QUESTIONS -->
+<section class="section" id="s20">
+  <div class="sec-eyebrow"><span class="t-en">20 · Negotiation</span><span class="t-es">20 · Negociación</span></div>
+  <div class="sec-title"><span class="t-en">Questions for SharkNinja</span><span class="t-es">Preguntas para SharkNinja</span></div>
+  <div class="sec-sub"><span class="t-en">25 concrete questions for the next call. Not abstract legal queries — specific operational and strategic points.</span><span class="t-es">25 preguntas concretas para la próxima llamada. No consultas legales abstractas — puntos operativos y estratégicos específicos.</span></div>
+  <div class="grid-2">
+    <div>
+      <div class="q-group"><div class="q-group-title"><span class="t-en">Strategy</span><span class="t-es">Estrategia</span></div>
+        <div class="q-item"><span class="t-en">Which product categories are you actually envisioning Pau supporting? Can you share a rough campaign brief?</span><span class="t-es">¿Qué categorías de producto estáis pensando que Pau apoye realmente? ¿Podéis compartir un brief de campaña aproximado?</span></div>
+        <div class="q-item"><span class="t-en">Is Ninja expected to be the lead brand, or is this a full SharkNinja portfolio deal?</span><span class="t-es">¿Se espera que Ninja sea la marca principal, o es un deal del portfolio completo de SharkNinja?</span></div>
+        <div class="q-item"><span class="t-en">How does Pau fit within the Neighborhood ecosystem — what is his lane, and how does it complement Beckham, Brady, Hart, and Klum?</span><span class="t-es">¿Cómo encaja Pau en el ecosistema Neighborhood? ¿Cuál es su carril y cómo complementa a Beckham, Brady, Hart y Klum?</span></div>
+        <div class="q-item"><span class="t-en">Are you open to a structured Gasol Foundation impact component modelled on the Brady/MassChallenge Innovation Challenge?</span><span class="t-es">¿Estaríais abiertos a un componente de impacto estructurado con la Gasol Foundation, inspirado en el Innovation Challenge de Brady/MassChallenge?</span></div>
+        <div class="q-item"><span class="t-en">Is Spain the only intended territory for obligations, or are you expecting Pau to participate in EMEA-level activations?</span><span class="t-es">¿Es España el único territorio previsto para las obligaciones, o esperáis que Pau participe en activaciones a nivel EMEA?</span></div>
+      </div>
+      <div class="q-group"><div class="q-group-title"><span class="t-en">Content & Production</span><span class="t-es">Contenido y Producción</span></div>
+        <div class="q-item"><span class="t-en">What is the expected output from the 8-hour production day? Video count, still count, format mix?</span><span class="t-es">¿Cuál es el output esperado del día de producción de 8 horas? ¿Cuántos vídeos, cuántas fotos, qué formatos?</span></div>
+        <div class="q-item"><span class="t-en">What is the split between self-shot and produced content across the six Instagram posts?</span><span class="t-es">¿Cuál es la proporción entre contenido auto-grabado y producido en los seis posts de Instagram?</span></div>
+        <div class="q-item"><span class="t-en">Who controls the creative brief — SharkNinja global, SharkNinja Spain, or a shared agency?</span><span class="t-es">¿Quién controla el brief creativo — SharkNinja global, SharkNinja España, o una agencia compartida?</span></div>
+        <div class="q-item"><span class="t-en">Can we add a second production day for experiential content (dinner, cooking activation)?</span><span class="t-es">¿Podemos añadir un segundo día de producción para contenido experiencial (cena, activación de cocina)?</span></div>
+      </div>
+      <div class="q-group"><div class="q-group-title"><span class="t-en">Usage & EMEA</span><span class="t-es">Uso y EMEA</span></div>
+        <div class="q-item"><span class="t-en">EMEA usage while the territory is Spain — can you define EMEA precisely? Which countries?</span><span class="t-es">Uso EMEA con territorio España — ¿podéis definir EMEA con precisión? ¿Qué países exactamente?</span></div>
+        <div class="q-item"><span class="t-en">Can Pau's likeness appear in paid media campaigns targeting consumers outside Spain?</span><span class="t-es">¿Puede la imagen de Pau aparecer en campañas de paid media dirigidas a consumidores fuera de España?</span></div>
+        <div class="q-item"><span class="t-en">Can retailers outside Spain (Currys UK, FNAC France, MediaMarkt Germany) use Pau's assets independently?</span><span class="t-es">¿Pueden retailers fuera de España (Currys UK, FNAC Francia, MediaMarkt Alemania) usar los activos de Pau de forma independiente?</span></div>
+        <div class="q-item"><span class="t-en">What is the takedown timeline after the six-month term? Are assets removed from all channels?</span><span class="t-es">¿Cuál es el plazo de retirada de activos tras los seis meses? ¿Se eliminan de todos los canales?</span></div>
+        <div class="q-item"><span class="t-en">Can assets remain on SharkNinja.com permanently, or is there an expiry?</span><span class="t-es">¿Pueden los activos permanecer en SharkNinja.com permanentemente, o hay una fecha de caducidad?</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="q-group"><div class="q-group-title"><span class="t-en">Retail</span><span class="t-es">Retail</span></div>
+        <div class="q-item"><span class="t-en">Which specific retailers are envisioned for in-store usage? (El Corte Inglés, MediaMarkt, Fnac, Amazon?)</span><span class="t-es">¿Qué retailers concretos están previstos para el uso en tienda? (¿El Corte Inglés, MediaMarkt, Fnac, Amazon?)</span></div>
+        <div class="q-item"><span class="t-en">Can you confirm that Pau's image will not appear in price-led, discount, or promotional/clearance creative without separate approval?</span><span class="t-es">¿Podéis confirmar que la imagen de Pau no aparecerá en creatividades de precio, descuento o liquidación sin aprobación expresa?</span></div>
+        <div class="q-item"><span class="t-en">Will retailers be permitted to use Pau's assets in their own paid media, or are assets restricted to display/editorial context?</span><span class="t-es">¿Podrán los retailers usar los activos de Pau en su propio paid media, o quedan restringidos a contextos de exposición/editorial?</span></div>
+      </div>
+      <div class="q-group"><div class="q-group-title"><span class="t-en">Exclusivity</span><span class="t-es">Exclusividad</span></div>
+        <div class="q-item"><span class="t-en">Can you provide a named list of the specific categories and competing brands covered by exclusivity?</span><span class="t-es">¿Podéis proporcionar una lista nominativa de las categorías y marcas competidoras cubiertas por la exclusividad?</span></div>
+        <div class="q-item"><span class="t-en">Is Café de Finca (coffee brand, Pau investor) a conflict under the coffee machine category?</span><span class="t-es">¿Supone Café de Finca (marca de café, Pau es inversor) un conflicto bajo la categoría de máquinas de café?</span></div>
+        <div class="q-item"><span class="t-en">Are Therabody, Oura Ring, and INDYA (active Pau partnerships in health/wellness) excluded from the exclusivity scope?</span><span class="t-es">¿Están Therabody, Oura Ring e INDYA (partnerships activos de Pau en salud/bienestar) excluidos del alcance de la exclusividad?</span></div>
+      </div>
+      <div class="q-group"><div class="q-group-title"><span class="t-en">Foundation & Experiences</span><span class="t-es">Fundación y Experiencias</span></div>
+        <div class="q-item"><span class="t-en">Is SharkNinja open to a structured Gasol Foundation programme component with its own budget line separate from the ambassador fee?</span><span class="t-es">¿Está SharkNinja abierto a un componente estructurado del programa Gasol Foundation con su propia línea presupuestaria separada de la tarifa de embajador?</span></div>
+        <div class="q-item"><span class="t-en">For the dinner — who controls the guest list? What share of guests are Penthouse programme clients vs Pau's own network?</span><span class="t-es">Para la cena — ¿quién controla la lista de invitados? ¿Qué proporción son clientes del programa Penthouse frente a la red propia de Pau?</span></div>
+        <div class="q-item"><span class="t-en">Would SharkNinja be open to the dinner featuring a guest chef from Pau's network (e.g. someone associated with the Foundation)?</span><span class="t-es">¿Estaría SharkNinja abierto a que la cena incluyera un chef invitado de la red de Pau (p.ej. alguien vinculado a la Fundación)?</span></div>
+      </div>
+      <div class="q-group"><div class="q-group-title"><span class="t-en">Economics</span><span class="t-es">Económicos</span></div>
+        <div class="q-item"><span class="t-en">Does $250K include all usage rights, exclusivity, and expenses? Or is production budgeted separately?</span><span class="t-es">¿Los $250K incluyen todos los derechos de uso, exclusividad y gastos? ¿O la producción va presupuestada aparte?</span></div>
+        <div class="q-item"><span class="t-en">Would expanded EMEA usage rights or a LATAM extension carry an additional fee?</span><span class="t-es">¿Conllevaría una tarifa adicional la ampliación de derechos de uso EMEA o una extensión a LATAM?</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 ARCHITECTURE -->
+<section class="section" id="s21">
+  <div class="sec-eyebrow"><span class="t-en">21 · Vision</span><span class="t-es">21 · Visión</span></div>
+  <div class="sec-title"><span class="t-en">Recommended Partnership Architecture</span><span class="t-es">Arquitectura de Partnership Recomendada</span></div>
+  <div class="sec-sub"><span class="t-en">From celebrity endorsement to a Spain-specific platform with three layers of value.</span><span class="t-es">Del endorsement de celebrity a una plataforma específica para España con tres capas de valor.</span></div>
+  <div class="grid-2" style="margin-bottom:24px">
+    <div>
+      <div style="padding:14px;border:1px solid var(--border);border-radius:2px;margin-bottom:10px;opacity:.5">
+        <p style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text3)"><span class="t-en">CURRENT PROPOSAL</span><span class="t-es">PROPUESTA ACTUAL</span></p>
+        <p style="font-family:var(--ff-title);font-size:16px;color:var(--text);margin:4px 0 6px"><span class="t-en">Celebrity Endorsement</span><span class="t-es">Endorsement de Celebrity</span></p>
+        <p style="font-size:12px;color:var(--text2)"><span class="t-en">6 posts · 2 stories · 1 production day · 2 PAs · 1 dinner · EMEA usage · full portfolio · 6 months · $250K. Generic. Undervalues the asset. Doesn't differentiate Pau from any other ambassador.</span><span class="t-es">6 posts · 2 stories · 1 día de producción · 2 APs · 1 cena · uso EMEA · portfolio completo · 6 meses · $250K. Genérico. Infravalora el activo. No diferencia a Pau de ningún otro embajador.</span></p>
+      </div>
+    </div>
+    <div>
+      <div class="arch-layer" style="border-color:var(--gold)">
+        <div class="arch-layer-num"><span class="t-en">Layer 1 · Commercial Ambassador</span><span class="t-es">Capa 1 · Embajador Comercial</span></div>
+        <div class="arch-layer-title">Pau Gasol × Ninja</div>
+        <div class="arch-layer-desc"><span class="t-en">Structured 12-month deal. Named product list: Outdoor Cooking (hero) + Blenders/Food Prep (performance anchor) + Air Fryers (family volume) + Thirsti (health). Spain territory. Defined EMEA usage scope. Retail usage guardrails. CREAMi excluded. Coffee category carve-out for Café de Finca. Creative control clause. Fee: $250K base + EMEA usage supplement.</span><span class="t-es">Deal estructurado de 12 meses. Lista de productos nombrados: Outdoor Cooking (hero) + Batidoras/Prep (ancla de rendimiento) + Air Fryers (volumen familiar) + Thirsti (salud). Territorio España. Alcance de uso EMEA definido. Protecciones de uso retail. CREAMi excluido. Carve-out de categoría café para Café de Finca. Cláusula de control creativo. Fee: $250K base + suplemento uso EMEA.</span></div>
+      </div>
+      <div class="arch-layer" style="border-color:var(--green)">
+        <div class="arch-layer-num"><span class="t-en">Layer 2 · Impact Programme</span><span class="t-es">Capa 2 · Programa de Impacto</span></div>
+        <div class="arch-layer-title">Gasol Foundation × SharkNinja</div>
+        <div class="arch-layer-desc"><span class="t-en">Structured separately from ambassador fee. Ninja kitchen equipment deployed into Foundation programme sites (Spain + US camps/schools). Annual "Ninja × Gasol Foundation Healthy Kitchen Challenge." Measurable outcomes data published annually. Foundation provides credibility infrastructure; SharkNinja provides equipment + programme co-branding. Separate budget line: $50–100K incremental.</span><span class="t-es">Estructurado separadamente de la tarifa de embajador. Equipamiento de cocina Ninja desplegado en los centros del programa de la Fundación (España + campamentos/escuelas en EE.UU.). "Ninja × Gasol Foundation Healthy Kitchen Challenge" anual. Datos de resultados medibles publicados anualmente. La Fundación aporta infraestructura de credibilidad; SharkNinja aporta equipamiento + co-branding del programa. Línea presupuestaria separada: $50-100K incremental.</span></div>
+      </div>
+      <div class="arch-layer" style="border-color:var(--shark)">
+        <div class="arch-layer-num"><span class="t-en">Layer 3 · Ecosystem (Year 2+)</span><span class="t-es">Capa 3 · Ecosistema (Año 2+)</span></div>
+        <div class="arch-layer-title"><span class="t-en">Gastronomy + Co-Design</span><span class="t-es">Gastronomía + Co-Diseño</span></div>
+        <div class="arch-layer-desc"><span class="t-en">If Layers 1+2 succeed: "Una Noche con Roca y Gasol" as Spain annual event property. Potential co-designed Ninja product in Mediterranean/health aesthetic (parallel to Beckham Luxe Café Pro). Potential Café de Finca × Ninja Luxe Café co-brand if conflict resolved. Position Pau as the Ninja ambassador who owns the health/nutrition/Mediterranean food lane globally.</span><span class="t-es">Si las Capas 1+2 tienen éxito: "Una Noche con Roca y Gasol" como evento anual propio en España. Potencial producto Ninja co-diseñado en estética mediterránea/salud (paralelo al Beckham Luxe Café Pro). Potencial co-marca Café de Finca × Ninja Luxe Café si se resuelve el conflicto. Posicionar a Pau como el embajador Ninja que lidera el carril salud/nutrición/cocina mediterránea a nivel global.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 22 DEBRIEF -->
+<section class="section" id="s22">
+  <div class="sec-eyebrow"><span class="t-en">22 · Executive Debrief</span><span class="t-es">22 · Debrief Ejecutivo</span></div>
+  <div class="sec-title"><span class="t-en">What We Like · What Needs Changing · What to Protect</span><span class="t-es">Lo que nos gusta · Lo que hay que cambiar · Lo que hay que proteger</span></div>
+  <div class="grid-2">
+    <div>
+      <div class="debrief-section">
+        <div class="debrief-title" style="color:var(--green)"><span class="t-en">What we like</span><span class="t-es">Lo que nos gusta</span></div>
+        <div class="debrief-items">
+          <div class="debrief-item" style="border-color:var(--green)">SharkNinja's authenticity-first selection logic works in Pau's favour — his foodie identity and health credentials are documented before any deal conversation.</div>
+          <div class="debrief-item" style="border-color:var(--green)">Spain going direct Q1 2026 means we are at the perfect moment. Pau becomes the face of a brand entering its most important new market.</div>
+          <div class="debrief-item" style="border-color:var(--green)">The pre-deal conversation already explored the right territory (healthy eating, family, Foundation). SharkNinja has shown genuine creative ambition beyond transactional posts.</div>
+          <div class="debrief-item" style="border-color:var(--green)">The Brady Innovation Challenge proves SharkNinja will invest in impact-layer components within ambassador deals. The Gasol Foundation programme has a clear structural precedent.</div>
+          <div class="debrief-item" style="border-color:var(--green)">The Neighborhood construct means Pau enters an ecosystem, not a solo campaign — reducing the "carry the brand alone" risk.</div>
+        </div>
+      </div>
+      <div class="debrief-section">
+        <div class="debrief-title" style="color:var(--amber)"><span class="t-en">What needs clarification</span><span class="t-es">Lo que necesita clarificación</span></div>
+        <div class="debrief-items">
+          <div class="debrief-item" style="border-color:var(--amber)">Spain territory vs. EMEA usage — this contradiction is the most urgent unresolved point before signing.</div>
+          <div class="debrief-item" style="border-color:var(--amber)">Which exact products SharkNinja intends to activate. Full portfolio is too broad to negotiate meaningfully.</div>
+          <div class="debrief-item" style="border-color:var(--amber)">Whether $250K is all-in or a base fee with production costs separate.</div>
+          <div class="debrief-item" style="border-color:var(--amber)">Café de Finca conflict — is it a conflict under their coffee exclusivity? Who decides?</div>
+          <div class="debrief-item" style="border-color:var(--amber)">Guest list control for the dinner — Pau's authentic network vs SharkNinja's trade clients.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="debrief-section">
+        <div class="debrief-title" style="color:var(--red)"><span class="t-en">What we would change</span><span class="t-es">Lo que cambiaríamos</span></div>
+        <div class="debrief-items">
+          <div class="debrief-item" style="border-color:var(--red)">Term: 6 months → 12 months minimum with renewal option. Short deals signal test, not investment.</div>
+          <div class="debrief-item" style="border-color:var(--red)">Full portfolio → named product list. Exclude: Shark vacuums, Shark Beauty, Ninja CREAMi (unless with explicit creative brief restriction).</div>
+          <div class="debrief-item" style="border-color:var(--red)">EMEA usage without fee supplement → either restrict to Spain + SharkNinja.com, or reprice for EMEA scope.</div>
+          <div class="debrief-item" style="border-color:var(--red)">"Still images for retailer.com and in-store" → add approved retailer list + explicit prohibition on price/discount/clearance contexts.</div>
+          <div class="debrief-item" style="border-color:var(--red)">Broad exclusivity → closed named competitor brand list with explicit carve-outs for existing Pau partnerships.</div>
+        </div>
+      </div>
+      <div class="debrief-section">
+        <div class="debrief-title" style="color:var(--gold)"><span class="t-en">Negotiation priorities (ranked)</span><span class="t-es">Prioridades de negociación (por orden)</span></div>
+        <div class="debrief-items">
+          <div class="debrief-item" style="border-color:var(--gold)"><strong>1.</strong> Resolve EMEA usage vs Spain territory — fee or scope restriction.</div>
+          <div class="debrief-item" style="border-color:var(--gold)"><strong>2.</strong> Agree named product list — exclude CREAMi, define coffee position.</div>
+          <div class="debrief-item" style="border-color:var(--gold)"><strong>3.</strong> Retail usage guardrails — no price/discount contexts without separate approval.</div>
+          <div class="debrief-item" style="border-color:var(--gold)"><strong>4.</strong> Exclusivity carve-outs — Café de Finca, Therabody, Oura, INDYA, Foundation.</div>
+          <div class="debrief-item" style="border-color:var(--gold)"><strong>5.</strong> Propose Foundation Layer 2 — structure it as a separate budget component.</div>
+          <div class="debrief-item" style="border-color:var(--gold)"><strong>6.</strong> Extend term to 12 months — anchored in Spain market launch story.</div>
+          <div class="debrief-item" style="border-color:var(--gold)"><strong>7.</strong> AI clause — mandatory. Non-negotiable.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div style="padding:20px 24px;background:var(--gold3);border:1px solid rgba(201,168,76,.25);border-radius:2px">
+    <p style="font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px">From → To</p>
+    <div class="grid-2">
+      <div>
+        <p style="font-size:13px;color:var(--text3);text-decoration:line-through;margin-bottom:6px"><span class="t-en">A 6-month celebrity endorsement in Spain.<br>$250K · full portfolio · EMEA usage · 6 posts.</span><span class="t-es">Un endorsement de celebrity de 6 meses en España.<br>$250K · portfolio completo · uso EMEA · 6 posts.</span></p>
+      </div>
+      <div>
+        <p style="font-family:var(--ff-title);font-size:15px;color:var(--gold);line-height:1.5"><span class="t-en">A Spain-first platform built around Pau + Ninja + healthy family cooking + Mediterranean food culture — with a Gasol Foundation impact layer that transforms a commercial deal into a movement, and a gastronomy ecosystem (Joan Roca, José Andrés, Café de Finca) that no other appliance brand in Spain can replicate.</span><span class="t-es">Una plataforma Spain-first construida en torno a Pau + Ninja + cocina familiar saludable + cultura gastronómica mediterránea — con una capa de impacto Gasol Foundation que transforma un acuerdo comercial en un movimiento, y un ecosistema gastronómico (Joan Roca, José Andrés, Café de Finca) que ninguna otra marca de electrodomésticos en España puede replicar.</span></p>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:16px;padding:10px 14px;border:1px solid var(--border2);font-size:10.5px;color:var(--text3)">Confidential advisory document prepared for internal use. All factual claims are sourced from public information. Benchmarks, valuations, and deal recommendations are advisory inferences and do not constitute legal or financial advice. Consult qualified entertainment, IP, and commercial counsel before entering into or modifying any agreement.</div>
+</section>
+
+</main>
+</div>
+
+<script>
+const SECTIONS=[
+  [1,'Executive Summary','Resumen Ejecutivo'],[2,'SharkNinja at a Glance','SharkNinja de un Vistazo'],[3,'Product Ecosystem','Ecosistema de Producto'],
+  [4,'Ambassador Strategy','Estrategia de Embajadores'],[5,'Ambassador Benchmark Matrix','Matriz de Benchmarks'],[6,'Creative Gallery','Galería Creativa'],
+  [7,'Beckham Deep Dive','Beckham: Análisis'],[8,'Brady Deep Dive','Brady: Análisis'],[9,'Asset Usage Patterns','Uso de Activos'],
+  [10,'Pau Gasol Fit','Encaje de Pau Gasol'],[11,'Gasol Foundation','Gasol Foundation'],[12,'Gastronomy & Coffee','Gastronomía y Café'],
+  [13,'Experiential Concepts','Conceptos Experienciales'],[14,'Deal Breakdown','Análisis del Deal'],[15,'Territory vs Usage','Territorio vs Uso'],
+  [16,'Retail Risk','Riesgo Retail'],[17,'Exclusivity','Exclusividad'],[18,'Creative Control','Control Creativo'],
+  [19,'Draft Clause','Cláusula Propuesta'],[20,'Questions for SharkNinja','Preguntas a SharkNinja'],[21,'Partnership Architecture','Arquitectura de Partnership'],
+  [22,'Executive Debrief','Debrief Ejecutivo']
+];
+const nav=document.getElementById('sb-nav');
+function renderNav(){
+  const lang=document.documentElement.dataset.lang==='es'?2:1;
+  nav.innerHTML=SECTIONS.map(([n,en,es])=>`<div class="sb-item" onclick="goTo(${n})"><span class="sb-num">${String(n).padStart(2,'0')}</span><span class="sb-label">${lang===2?es:en}</span></div>`).join('');
+}
+renderNav();
+function setLang(l){
+  document.documentElement.dataset.lang=l;
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.getElementById('btn-es').classList.toggle('active',l==='es');
+  renderNav();
+}
+function goTo(n){document.getElementById('s'+String(n).padStart(2,'0')).scrollIntoView({behavior:'smooth'})}
+window.addEventListener('scroll',()=>{
+  const items=document.querySelectorAll('.sb-item');
+  SECTIONS.forEach(([n],i)=>{
+    const el=document.getElementById('s'+String(n).padStart(2,'0'));
+    if(el){const r=el.getBoundingClientRect();if(r.top<=120&&r.bottom>0){items.forEach(x=>x.classList.remove('active'));items[i]?.classList.add('active')}}
+  });
+},{passive:true});
+</script>
